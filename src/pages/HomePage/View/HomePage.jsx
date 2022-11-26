@@ -1,6 +1,6 @@
 import React from "react";
 import _ from 'lodash'
-import { Grid, GridRow, Image } from "semantic-ui-react";
+import { Grid, GridRow, Image, TableRow } from "semantic-ui-react";
 import { Button, Card ,CardMeta, Placeholder } from 'semantic-ui-react'
 
 const products = [
@@ -30,46 +30,25 @@ export default class home extends React.Component {
     const { loading } = this.state
   
   return (
-    <Grid columns={4} divided>
+    <div>
       <h2>POPÜLER KATEGORİLER</h2>
-      <Grid.Row>
-        <Grid.Column >
-          <GridRow >Kitaplar</GridRow>
-          <GridRow>Okuma Kitapları</GridRow>
-          <Image src="public\kitap.png" />
-        </Grid.Column>
-        <Grid.Column>
-          <Image src="/images/wireframe/media-paragraph.png" />
-        </Grid.Column>
-        <Grid.Column>
-          <Image src="/images/wireframe/media-paragraph.png" />
-        </Grid.Column>{" "}
-        <Grid.Column>
-          <Image src="/images/wireframe/media-paragraph.png" />
-        </Grid.Column>
-      </Grid.Row>
+
+      <TableRow>
+          <img style={{width: "120px", marginRight: "16px"}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+          <img style={{width: "120px", marginRight: "16px"}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+          <img style={{width: "120px", marginRight: "16px"}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+      </TableRow>
 
       <h2>POPÜLER KULLANICILAR</h2>
-      <Grid.Row columns={4} divided>
-        <Grid.Column>
-          <GridRow>Kitaplar</GridRow>
-          <GridRow>Okuma Kitapları</GridRow>
-          <Image src=" " />
-        </Grid.Column>
-        <Grid.Column>
-          <Image src="/https://instagram.fasr1-2.fna.fbcdn.net/v/t51.2885-19/282167607_577951366938300_3378994294691656488_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.fasr1-2.fna.fbcdn.net&_nc_cat=100&_nc_ohc=7enFG8jx1QYAX9PCCXs&tn=e63r-r-rS2j5pirM&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfAy9F-VMj72aitNgf_x9q35tUmpMz-i0YY8Y6vxNAxbww&oe=6364A1B0&_nc_sid=8fd12b/wireframe/media-paragraph.png" />
-        </Grid.Column>
-        <Grid.Column>
-          <Image src="/images/wireframe/media-paragraph.png" />
-        </Grid.Column>{" "}
-        <Grid.Column>
-          <Image src="/images/wireframe/media-paragraph.png" />
-        </Grid.Column>
-      </Grid.Row>
+      <TableRow>
+      <img style={{width: "120px", marginRight: "16px"}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+          <img style={{width: "120px", marginRight: "16px"}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+          <img style={{width: "120px", marginRight: "16px"}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+      </TableRow>
 
       <h2>Yeni Ürünler</h2>
-      <Card.Group doubling itemsPerRow={3} stackable>
-          {_.map(products, (product) => (
+      <Card.Group itemsPerRow={3} stackable style={{marginBottom: "16px"}} doubling>
+          {products.map((product) => (
             <Card key={product.header}>
               {loading ? (
                 <Placeholder>
@@ -108,6 +87,6 @@ export default class home extends React.Component {
             </Card>
           ))}
         </Card.Group>
-    </Grid>
+    </div>
   );
 }}

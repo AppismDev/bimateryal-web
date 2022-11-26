@@ -5,6 +5,9 @@ import { store } from "./app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import "./pages/index";
+import "./components/index.js";
+
 import "semantic-ui-css/semantic.min.css";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
