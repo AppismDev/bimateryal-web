@@ -1,0 +1,18 @@
+.footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
+    min-height: 60px;
+    background-color: red;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    color: white;
+    text-align: center;
+
+}
+
+.footer-content {
+    display: flex;
+}

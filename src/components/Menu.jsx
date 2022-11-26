@@ -29,7 +29,7 @@ export default function menu() {
               src="/kitap.png"
               style={{ marginRight: "1.5em" }}
             />
-            Bi Metaryel
+            BiMateryal
           </Menu.Item>
 
           <Menu.Item as={NavLink} to="/home" >
