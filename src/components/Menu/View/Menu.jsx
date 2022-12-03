@@ -2,10 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiCategoryAlt, BiMessage } from "react-icons/bi";
-import User from "./User";
-import Notifications from "./Notifications";
-
-
+import Notifications from "./../../Notification/Views/Notifications";
+import SettingsDropdown from "./../../Setting/View/Settings";
+import Settings from "./../../Setting/View/Settings";
+import User from './../../User/View/User';
 import {
   Menu,
   Dropdown,
@@ -15,8 +15,7 @@ import {
   MenuItem,
   Container,
 } from "semantic-ui-react";
-import SettingsDropdown from "./Settings";
-import Settings from "./Settings";
+
 
 export default function menu() {
   return (

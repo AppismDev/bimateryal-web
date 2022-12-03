@@ -5,8 +5,8 @@ import { store } from "./app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import "./pages/index";
-import "./components/index.js";
+import "./pages/";
+import "./components/";
 
 import "semantic-ui-css/semantic.min.css";
 import ReactDOM from "react-dom";

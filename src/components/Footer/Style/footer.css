@@ -1,18 +1,154 @@
-.footer{
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    margin-top: auto;
-    min-height: 60px;
-    background-color: red;
-    /* display: flex;
+.flex-container {
+    display: inline-flex;
+    color: #b2a3a3;
+    background-image: linear-gradient(to right, rgba(7, 43, 81, 0.944), rgb(6, 6, 0));
+    border-top: 1px solid #040405e2;
     justify-content: center;
-    align-items: center; */
-    color: white;
-    text-align: center;
+    box-shadow: 0px 0px 25px rgb(18, 10, 10);
+    position: relative;
+    border-top-left-radius: 50px;
+    flex-direction: column;
+    margin-top: auto;
+
 
 }
 
-.footer-content {
-    display: flex;
+.div-class {
+    display: inline-flex;
+
+
+}
+
+
+
+.flex-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-content: space-between;
+    position: relative;
+
+}
+
+.flex-container div h3 {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgb(230, 229, 227);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+
+}
+
+.column-1 {
+    flex: 1;
+    padding: 10px;
+    width: 100px;
+    position: relative;
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+}
+
+.i {
+
+    display: inline-flex;
+    position: left;
+    margin-right: 100px;
+    padding: 20px;
+    margin-left: 20px;
+    width: 250px;
+}
+
+.contentimg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+
+.column-2 {
+    flex: 1;
+    margin: 35px 0px 0px 20px;
+
+
+
+
+}
+
+.column-3 {
+    flex: 1;
+    margin: 35px 0px 0px 0px;
+
+
+}
+
+.column-4 {
+    flex: 1;
+    margin: 35px 0px 0px 0px;
+    padding: 25px 0px 0px;
+
+
+
+}
+
+.column-4>ul>li {
+    display: inline-flex;
+    margin: 0.5em;
+    font-size: 15px;
+    position: relative;
+
+}
+
+
+.ft-logo-1 {
+    margin-right: 0.2em;
+    color: rgb(174, 205, 208);
+
+}
+
+.ft-logo-2 {
+    margin-right: 0.2em;
+    color: rgb(49, 157, 203);
+
+
+}
+
+.ft-logo-3 {
+    margin-right: 0.2em;
+    color: rgb(5, 120, 191);
+
+}
+
+.ft-logo-4 {
+    color: rgba(245, 98, 13, 0.955);
+
+}
+
+.under-column {
+
+    justify-content: flex-start;
+    margin-top: auto;
+}
+
+
+.under-column>p {
+
+    color: #0991a9;
+    text-align: center;
+    margin: auto;
+    padding: 2px 2px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+.under-column>hr {
+    width: 100%;
+    height: 0.5px;
+    background-color: #ecf1f1e2;
+    border: none;
+    position: relative;
+
 }
