@@ -1,12 +1,10 @@
-.flex-container {
+.footer-flex-container {
     display: inline-flex;
     color: #b2a3a3;
-    background-image: linear-gradient(to right, rgba(7, 43, 81, 0.944), rgb(6, 6, 0));
-    border-top: 1px solid #040405e2;
+    background-color: rgb(39, 39, 39);    
     justify-content: center;
-    box-shadow: 0px 0px 25px rgb(18, 10, 10);
+    /* box-shadow: 0px 0px 25px rgb(18, 10, 10); */
     position: relative;
-    border-top-left-radius: 50px;
     flex-direction: column;
     margin-top: auto;
 
@@ -19,9 +17,7 @@
 
 }
 
-
-
-.flex-container ul {
+.footer-flex-container ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -31,7 +27,16 @@
 
 }
 
-.flex-container div h3 {
+.footer-flex-container a {
+    text-decoration: none;
+}
+
+.footer-flex-container a:visited, .footer-flex-container a:active, .footer-flex-container a:focus, .footer-flex-container a:link{
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-flex-container div h3 {
     font-size: 20px;
     font-weight: 300;
     color: rgb(230, 229, 227);
@@ -101,29 +106,14 @@
 }
 
 
-.ft-logo-1 {
+
+.ft-logo {
     margin-right: 0.2em;
-    color: rgb(174, 205, 208);
-
+    font-size: 1.5em;
 }
 
-.ft-logo-2 {
-    margin-right: 0.2em;
-    color: rgb(49, 157, 203);
 
 
-}
-
-.ft-logo-3 {
-    margin-right: 0.2em;
-    color: rgb(5, 120, 191);
-
-}
-
-.ft-logo-4 {
-    color: rgba(245, 98, 13, 0.955);
-
-}
 
 .under-column {
 
@@ -133,13 +123,11 @@
 
 
 .under-column>p {
-
-    color: #0991a9;
+    color: rgb(230, 229, 227);
     text-align: center;
     margin: auto;
     padding: 2px 2px;
     font-size: 12px;
-    font-family: Arial, Helvetica, sans-serif;
 
 
 }
@@ -147,7 +135,7 @@
 .under-column>hr {
     width: 100%;
     height: 0.5px;
-    background-color: #ecf1f1e2;
+    background-color: rgb(230, 229, 227);
     border: none;
     position: relative;
 

@@ -6,12 +6,11 @@ import { AiOutlineHome } from 'react-icons/ai';
 
 export default function Footer() {
   return (
-    <div class="flex-container">
+    <div class="footer-flex-container">
       <div class="div-class">
         <div class="column-1">
           <div class="i">
             <div>
-              {" "}
               <img
                 class="contentimg"
                 src="https://avatars.githubusercontent.com/u/95625965?s=200&v=4"
@@ -30,7 +29,7 @@ export default function Footer() {
               <a>Gizlilik Politikası</a>
             </li>
             <li>
-              <a>Site Haritası</a>{" "}
+              <a>Site Haritası</a>
             </li>
           </ul>
         </div>
@@ -38,14 +37,12 @@ export default function Footer() {
           <h3>Company</h3>
           <ul>
             <li>
-              {" "}
               <a href="hakkımızda">About Us</a>
             </li>
             <li>
               <a href="bizimtakim">Our Team</a>
             </li>
             <li>
-              {" "}
               <a>Our Partners</a>
             </li>
             <li>
@@ -60,23 +57,22 @@ export default function Footer() {
           <ul>
             <li>
               <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsGithub class="ft-logo-1" size="1.5em" />
-              </a>
-            </li>
-            <li>
-              {" "}
-              <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsTwitter class="ft-logo-2" size="1.5em" />
+                <BsGithub class="ft-logo"  color="rgb(174, 205, 208)"/>
               </a>
             </li>
             <li>
               <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsLinkedin class="ft-logo-3" size="1.5em" />
+                <BsTwitter class="ft-logo"  color="rgb(49, 157, 203)"/>
               </a>
             </li>
             <li>
               <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsInstagram class="ft-logo-4" size="1.5em" />
+                <BsLinkedin class="ft-logo"  color="#0072b1" />
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/AppismDev" target={"_blank"}>
+                <BsInstagram class="ft-logo"  color="rgba(245, 98, 13)" />
               </a>
             </li>
           </ul>
