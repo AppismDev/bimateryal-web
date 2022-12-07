@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const products = [
   {
     id: 1,
@@ -89,17 +90,17 @@ export default function NewProducts() {
     <div className="home-page-new-products">
       <div className="home-page-new-products-header">
         <h2>Yeni Ürünler</h2>
-        <a href="/">Tümünü Gör</a>
+        <Link to="/">Tümünü Gör</Link>
       </div>
       <div className="home-page-new-products-content">
         {products.map((product) => (
-          <div className="home-page-new-products-item">
+          <Link to="/product/details" className="home-page-new-products-item">
             <img className="" src={product.image} alt={product.name} />
             <div className=".home-page-new-products-item-content ">
               <h3>{product.name}</h3>
               <p>{product.description}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

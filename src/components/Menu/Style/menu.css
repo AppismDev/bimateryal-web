@@ -1,24 +1,38 @@
 .menu {
     display: flex;
     flex-direction: row;
-    align-self: center;
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 16px;
-    margin-bottom: 16px;
-    width: 100%;
+    margin-bottom: 8px;
+    width: 80vw;
+
     justify-content: space-between;
+
 }
 
+.menu-right-icon-row > a {
+    text-decoration: none;
+    color: rgb(68, 67, 67);
+}
 
-
-
+.menu-right-icon-row > a:visited, .menu-right-icon-row > a:active, .menu-right-icon-row > a:focus, .menu-right-icon-row > a:link{
+    text-decoration: none;
+    color: rgb(68, 67, 67);
+}
 
 .menu-left {
     display: flex;
     flex-direction: row;
-    gap: 36px;
-    width: 100%;
-    margin-left: 36px;
-    
+    gap: 24px;
+}
+
+.menu-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
@@ -29,7 +43,7 @@
     border-radius: 12px;
     align-items: center;
     transition: all 0.2s ease-in-out;
-    text-decoration: none;
+    text-decoration: none;   
 
 }
 
@@ -41,34 +55,27 @@
 
 .icon-container:visited, .icon-container:active, .icon-container:focus, .icon-container:link{
     text-decoration: none;
-    color:black;
+    color: rgb(68, 67, 67);
 
 }
 
 .icon-text {
     margin-left: 8px;
     font-weight: 500;
-    font-size: 1.1em;
-}
-
-.menu-right {
-    margin-left: 20%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 36px;
-    width: 100%;
-    justify-content: space-between;
+    font-size: 1em;
 }
 
 .menu-right-icon-row {
     gap: 32px;
     margin-left: 24px;
+    padding-right: 12px;
     display: flex;
     flex-direction: row;
     flex: 1;
     justify-content: flex-end;
 }
+
+
 
 .menu-input-container {
     display: flex;
@@ -79,7 +86,6 @@
 }
 
 .menu-input-icon {
-    font-size: 24px;
     position: absolute;
     margin-left: 8px;    
 }
@@ -91,7 +97,7 @@
     background-color: rgba(226, 226, 226, 0.506);
     padding-left: 42px;
     padding-right: 16px;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 500;
     width: 100%;
 }
@@ -103,6 +109,8 @@
 .menu-divider {
     height: 1px;
     background-color: rgb(214, 214, 214);
-    margin-left: 36px;
-    margin-right: 36px;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+
 }

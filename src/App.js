@@ -8,6 +8,7 @@ import Messages from "./pages/MessagesPage/View/Messages";
 import Footer from "./components/Footer/View/Footer";
 import KullanımSartlari from "./components/BiMateryal/KullanımSartlari.jsx";
 import HomePage from "./pages/HomePage/View/HomePage";
+import MaterialDetails from "./pages/MaterialDetailsPage/View/MaterialDetails";
 
 function App() {
   return (
@@ -20,6 +21,11 @@ function App() {
           <Route exact path="/home" component={HomePage}></Route>
           <Route exact path="/messages" component={Messages}></Route>
           <Route exact path="/categories" component={Categories}></Route>
+          <Route
+            exact
+            path="/product/details"
+            component={MaterialDetails}
+          ></Route>
           <Route
             exact
             path="/kullanimsartları"

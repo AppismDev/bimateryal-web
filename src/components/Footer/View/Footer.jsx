@@ -1,8 +1,8 @@
 import React from "react";
 
 import { BsGithub, BsTwitter, BsLinkedin, BsInstagram } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
-import { AiOutlineHome } from 'react-icons/ai';
+import { Link, NavLink } from "react-router-dom";
+import { AiOutlineHome } from "react-icons/ai";
 
 export default function Footer() {
   return (
@@ -23,7 +23,7 @@ export default function Footer() {
           <h3>BiMateryal</h3>
           <ul>
             <li>
-              <a href="kullanimsartları">Kullanım Şartları</a>
+              <Link to="kullanimsartları">Kullanım Şartları</Link>
             </li>
             <li>
               <a>Gizlilik Politikası</a>
@@ -37,10 +37,10 @@ export default function Footer() {
           <h3>Company</h3>
           <ul>
             <li>
-              <a href="hakkımızda">About Us</a>
+              <Link to="hakkımızda">About Us</Link>
             </li>
             <li>
-              <a href="bizimtakim">Our Team</a>
+              <Link to="bizimtakim">Our Team</Link>
             </li>
             <li>
               <a>Our Partners</a>
@@ -56,24 +56,36 @@ export default function Footer() {
 
           <ul>
             <li>
-              <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsGithub class="ft-logo"  color="rgb(174, 205, 208)"/>
-              </a>
+              <Link
+                to={{ pathname: "https://github.com/AppismDev" }}
+                target={"_blank"}
+              >
+                <BsGithub class="ft-logo" color="rgb(174, 205, 208)" />
+              </Link>
             </li>
             <li>
-              <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsTwitter class="ft-logo"  color="rgb(49, 157, 203)"/>
-              </a>
+              <Link
+                to={{ pathname: "https://github.com/AppismDev" }}
+                target={"_blank"}
+              >
+                <BsTwitter class="ft-logo" color="rgb(49, 157, 203)" />
+              </Link>
             </li>
             <li>
-              <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsLinkedin class="ft-logo"  color="#0072b1" />
-              </a>
+              <Link
+                to={{ pathname: "https://github.com/AppismDev" }}
+                target={"_blank"}
+              >
+                <BsLinkedin class="ft-logo" color="#0072b1" />
+              </Link>
             </li>
             <li>
-              <a href="https://github.com/AppismDev" target={"_blank"}>
-                <BsInstagram class="ft-logo"  color="rgba(245, 98, 13)" />
-              </a>
+              <Link
+                to={{ pathname: "https://github.com/AppismDev" }}
+                target={"_blank"}
+              >
+                <BsInstagram class="ft-logo" color="rgba(245, 98, 13)" />
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const users = [
   {
@@ -33,7 +34,7 @@ export default function PopularUsers() {
     <div className="home-page-popular-users">
       <div className="home-page-popular-users-header">
         <h2>Popüler Kullanıcılar</h2>
-        <a href="/">Liderlik Tablosu</a>
+        <Link to="/">Liderlik Tablosu</Link>
       </div>
       <div className="home-page-popular-users-content">
         {users.map((users) => (
