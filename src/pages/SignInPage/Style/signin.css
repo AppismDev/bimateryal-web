@@ -1,0 +1,72 @@
+.sign-in-root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f5f5f5;
+}
+
+.sign-in-intro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-image: url("../../../../assets/images/bookwallpaper.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 24px;
+    margin-right: 24px;
+    height: calc(100vh - 48px);
+    border-radius: 24px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+
+.sign-in-intro-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 48px);
+    margin: 24px;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    
+    
+}
+
+.sign-in-intro-body-content {
+    font-weight: 300;
+}
+
+.sign-in-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 48px);
+
+
+}
+
+.sign-in-buttons-container {
+        width: "100%";
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      
+}
+
+
+.sign-in-buttons-header {
+    font-weight: 300;
+    
+}

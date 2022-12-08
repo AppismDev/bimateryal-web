@@ -9,31 +9,37 @@ import Footer from "./components/Footer/View/Footer";
 import KullanımSartlari from "./components/BiMateryal/KullanımSartlari.jsx";
 import HomePage from "./pages/HomePage/View/HomePage";
 import MaterialDetails from "./pages/MaterialDetailsPage/View/MaterialDetails";
+import SignInPage from "./pages/SignInPage/View/SignIn";
 
 function App() {
   return (
     <div className="App">
-      <Menu />
-
-      <Container className="main">
-        <Switch>
-          <Route exact path="/" component={HomePage}></Route>
-          <Route exact path="/home" component={HomePage}></Route>
-          <Route exact path="/messages" component={Messages}></Route>
-          <Route exact path="/categories" component={Categories}></Route>
-          <Route
-            exact
-            path="/product/details"
-            component={MaterialDetails}
-          ></Route>
-          <Route
-            exact
-            path="/kullanimsartları"
-            component={KullanımSartlari}
-          ></Route>
-        </Switch>
-      </Container>
-      <Footer />
+      {true ? (
+        <SignInPage />
+      ) : (
+        <>
+          <Menu />
+          <Container className="main">
+            <Switch>
+              <Route exact path="/" component={HomePage}></Route>
+              <Route exact path="/home" component={HomePage}></Route>
+              <Route exact path="/messages" component={Messages}></Route>
+              <Route exact path="/categories" component={Categories}></Route>
+              <Route
+                exact
+                path="/product/details"
+                component={MaterialDetails}
+              ></Route>
+              <Route
+                exact
+                path="/kullanimsartları"
+                component={KullanımSartlari}
+              ></Route>
+            </Switch>
+          </Container>
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
