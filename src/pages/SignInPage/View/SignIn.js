@@ -1,11 +1,15 @@
 import React from "react";
 import SignInButton from "../../../components/SignInButton/View/SignInButton.jsx";
-import signInWithGoogle from "../../../services/firebase/FirebaseAuth/FirebaseAuthentication.js";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { loginWithGoogle, user, userSlice } from '../signInSlice';
 export default function SignInPage() {
+
+  const dispatch = useDispatch();
+
   return (
     <div className="sign-in-root">
       <div className="sign-in-intro-container">
+
         <div className="sign-in-intro-body">
           <h1 className="sign-in-intro-body-content">
             İhtiyacınız olan eğitim materyallerini edinin. İhtiyaç fazlası olan
@@ -30,13 +34,11 @@ export default function SignInPage() {
             justifyContent: "center",
           }}
         >
+
           <SignInButton
             iconType="google"
             onClick={async () => {
-              var user = await signInWithGoogle();
-              // save user to cookies
-
-              console.log("User is", user);
+              dispatch(loginWithGoogle());
             }}
           />
 

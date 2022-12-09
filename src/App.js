@@ -10,11 +10,15 @@ import KullanımSartlari from "./components/BiMateryal/KullanımSartlari.jsx";
 import HomePage from "./pages/HomePage/View/HomePage";
 import MaterialDetails from "./pages/MaterialDetailsPage/View/MaterialDetails";
 import SignInPage from "./pages/SignInPage/View/SignIn";
+import { user } from './pages/SignInPage/signInSlice';
+import { useSelector } from "react-redux";
 
 function App() {
+  const userValue = useSelector(user);
+
   return (
     <div className="App">
-      {true ? (
+      {!userValue ? (
         <SignInPage />
       ) : (
         <>

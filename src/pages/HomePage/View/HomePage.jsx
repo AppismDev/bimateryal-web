@@ -1,8 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import HomePageCategories from "../../../components/HomePage/Categories/View/HomePageCategories";
 import NewProducts from "../../../components/HomePage/NewProducts/View/NewProducts";
 import PopularUsers from "../../../components/HomePage/PopularUsers/View/PopularUsers";
-
+import { user } from "../../SignInPage/signInSlice";
 const products = [
   {
     avatar:
@@ -29,8 +30,12 @@ const products = [
 ];
 
 function HomePage() {
+  const userValue = useSelector(user);
   return (
     <div className="home-page-container">
+      <div>{
+        JSON.stringify(userValue)
+      }</div>
       <HomePageCategories />
       <PopularUsers />
       <NewProducts />

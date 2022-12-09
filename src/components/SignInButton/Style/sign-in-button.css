@@ -1,4 +1,5 @@
-.sign-in-button {
+.sign-in-button-google,
+.sign-in-button-facebook {
     margin-top: 12px;
     margin-bottom: 24px;
     border-radius: 12px;
@@ -8,7 +9,6 @@
     font-weight: 300;
     gap: 8px;
     color: white;
-    background-color: #3b5998;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -18,15 +18,24 @@
     border: none;
 }
 
-.sign-in-button:hover {
-    background-color: #2e4372;
+.sign-in-button-facebook {
+    background-color: #3b5998;
 }
 
-.sign-in-button:active {
+.sign-in-button-google {
+    background-color: #dd4b39;
+}
+
+.sign-in-button-google:hover,
+.sign-in-button-facebook:hover {
+    opacity: 0.9;
+}
+
+.sign-in-button-google:active,
+.sign-in-button-facebook:active {
     transform: scale(0.95);
 }
 
 .sign-in-button-title::first-letter {
     text-transform: uppercase;
 }
-
