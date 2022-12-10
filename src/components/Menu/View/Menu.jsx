@@ -3,9 +3,10 @@ import { BiHomeAlt, BiMessage, BiCategory } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { FiBell, FiSettings } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-export default function menu() {
+export default function Menu() {
+  const history = useHistory();
   return (
     <div>
       <div className="menu">
@@ -20,7 +21,7 @@ export default function menu() {
             <div className="icon-text">Mesajlarım</div>
           </Link>
 
-          <Link to="messages" className="icon-container">
+          <Link to="categories" className="icon-container">
             <BiCategory size={24} />
             <div className="icon-text">Kategoriler</div>
           </Link>
@@ -45,6 +46,15 @@ export default function menu() {
               <FiSettings size={24} />
             </Link>
           </div>
+          <button
+            className="menu-add-button"
+            onClick={(e) => {
+              e.preventDefault();
+              history.push("/addMaterial");
+            }}
+          >
+            Ekle
+          </button>
         </div>
       </div>
       <div className="menu-divider" />

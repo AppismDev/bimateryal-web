@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const categories = [
   {
     categoryImage: "https://cdn-icons-png.flaticon.com/512/1903/1903162.png",
@@ -32,7 +33,7 @@ export default function HomePageCategories() {
     <div className="home-page-category">
       <div className="home-page-category-header">
         <h2>Popüler Kategoriler</h2>
-        <a href="/">Tümünü Gör</a>
+        <Link to="/">Tümünü Gör</Link>
       </div>
       <div className="home-page-category-content">
         {categories.map((category) => (

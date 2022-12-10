@@ -6,7 +6,7 @@
     margin-right: auto;
     margin-top: 16px;
     margin-bottom: 8px;
-    width: 80vw;
+    width: 95vw;
 
     justify-content: space-between;
 
@@ -66,16 +66,19 @@
 }
 
 .menu-right-icon-row {
-    gap: 32px;
+    gap: 24px;
     margin-left: 24px;
     padding-right: 12px;
     display: flex;
     flex-direction: row;
     flex: 1;
-    justify-content: flex-end;
 }
 
-
+.menu-right-icon-row > a  {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 
 .menu-input-container {
     display: flex;
@@ -109,8 +112,38 @@
 .menu-divider {
     height: 1px;
     background-color: rgb(214, 214, 214);
-    width: 80vw;
+    width: 95vw;
     margin-left: auto;
     margin-right: auto;
 
+}
+
+.menu-add-button {
+    margin-left: 24px;
+    background-color: #21c7b1;
+    /* padding-left: 36px;
+    padding-right: 36px;
+    padding-top: 8px;
+    padding-bottom: 8px; */
+    padding: 8px 36px;
+
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-weight: 500;
+    
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-add-button:hover {
+    cursor: pointer;
+    background-color: #1daa9b;
+}
+
+@media screen and (max-width: 1050px){
+    .icon-text {
+        display: none;
+        
+    }
 }

@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counter/counterSlice";
 import userReducer from "../pages/SignInPage/signInSlice";
+import addMaterialSlice from "../pages/AddMaterial/addMaterialSlice";
+import categoriesSlice from "../pages/CategoriesPage/categoriesSlice";
 
 export const store = configureStore({
   // middleware: (getDefaultMiddleware) =>
@@ -16,6 +18,8 @@ export const store = configureStore({
   // }),
   reducer: {
     counter: counterReducer,
-    user: userReducer
+    user: userReducer,
+    addMaterial: addMaterialSlice,
+    categories: categoriesSlice,
   },
 });
