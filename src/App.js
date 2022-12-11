@@ -12,11 +12,13 @@ import SignInPage from "./pages/SignInPage/View/SignIn";
 import { setUser, user } from "./pages/SignInPage/signInSlice";
 import { useDispatch, useSelector } from "react-redux";
 import AddMaterial from "./pages/AddMaterial/View/AddMaterial";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const userValue = useSelector(user);
   const dispatch = useDispatch();
   useEffect(() => {
+    // localStorage.removeItem("user");
     var userValue = localStorage.getItem("user");
     if (userValue) {
       dispatch(setUser(JSON.parse(userValue)));
@@ -30,6 +32,7 @@ function App() {
       ) : (
         <>
           <Menu />
+          <ToastContainer />
           <div className="main">
             <Switch>
               <Route exact path="/" component={HomePage}></Route>

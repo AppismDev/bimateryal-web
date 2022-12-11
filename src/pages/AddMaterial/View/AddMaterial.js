@@ -34,6 +34,7 @@ import {
   getSubCategoriesAsync,
   subcategoriesLoadingSelector,
 } from "../../CategoriesPage/categoriesSlice";
+import { toast } from "react-toastify";
 
 export default function AddMaterial() {
   const mainImageRef = useRef(null);
@@ -119,6 +120,7 @@ export default function AddMaterial() {
       dispatch(setMainPhoto(e.dataTransfer.files[0]));
     }
   };
+
   // ------------------------------------- main inputa drag ve drop edilince yapılacak işlemler -------------------------------------
   return (
     <div>
@@ -130,10 +132,38 @@ export default function AddMaterial() {
         onSubmit={(e) => {
           e.preventDefault();
           if (mainPhotoState == undefined) {
-            alert("Lütfen bir fotoğraf seçiniz.");
+            toast.error("Lütfen bir fotoğraf seçiniz");
             return;
           }
-          console.log(allState);
+          if (materialNameState == undefined) {
+            toast.error("Lütfen bir isim giriniz");
+            return;
+          }
+          if (materialDescriptionState == undefined) {
+            toast.error("Lütfen bir açıklama giriniz");
+            return;
+          }
+
+          if (materialCategoryState == undefined) {
+            toast.error("Lütfen bir kategori seçiniz");
+            return;
+          }
+
+          if (materialSubCategoryState == undefined) {
+            toast.error("Lütfen bir alt kategori seçiniz");
+            return;
+          }
+
+          if (materialPriceState == undefined) {
+            toast.error("Lütfen bir fiyat giriniz");
+            return;
+          }
+
+          if (materialMediaState == undefined) {
+            toast.error("Lütfen bir fotoğraf seçiniz");
+            return;
+          }
+
           const data = {
             name: materialNameState,
             description: materialDescriptionState,
@@ -141,9 +171,9 @@ export default function AddMaterial() {
             subCategoryId: materialSubCategoryState,
             price: materialPriceState,
             coverImage: mainPhotoState,
-            location: undefined,
+            location: null,
             media: materialMediaState,
-            ownerUserId: userState.uid,
+            ownerUserId: userState.user.uid,
           };
           dispatch(addMaterialAsync(data));
         }}
@@ -203,6 +233,7 @@ export default function AddMaterial() {
             <input
               id="add-material-input"
               name="add-material-input"
+              required
               onChange={(e) => {
                 dispatch(setMaterialName(e.target.value));
               }}
@@ -211,12 +242,10 @@ export default function AddMaterial() {
           <div className="add-material-label-column">
             <div className="add-material-select-label">Materyal Kategorisi</div>
             <select
+              required
               disabled={categoriesLoadingState}
               id="add-material-category-select"
               value={materialCategoryState}
-              onSelect={(e) => {
-                console.log("onselect triggerd");
-              }}
               onChange={(e) => {
                 console.log("onchange triggerd");
                 dispatch(setMaterialCategory(e.target.value));
@@ -227,9 +256,11 @@ export default function AddMaterial() {
                   Yükleniyor...
                 </option>
               )}
-              <option value={undefined} disabled selected>
-                Lütfen bir kategori seçiniz
-              </option>
+              {categoriesState && !materialCategoryState && (
+                <option value="" disabled selected>
+                  Kategori Seçiniz
+                </option>
+              )}
               {categoriesState &&
                 categoriesState.map((category) => (
                   <option key={category.categoryId} value={category.categoryId}>
@@ -245,6 +276,7 @@ export default function AddMaterial() {
             <select
               disabled={subcategoriesLoadingState}
               value={materialSubCategoryState}
+              required
               id="add-material-category-select"
               onChange={(e) => {
                 dispatch(setMaterialSubCategory(e.target.value));
@@ -255,9 +287,15 @@ export default function AddMaterial() {
                   Yükleniyor...
                 </option>
               )}
+
               {!materialCategoryState && (
                 <option value="" disabled selected>
                   Lütfen önce bir kategori seçiniz.
+                </option>
+              )}
+              {materialCategoryState && !materialSubCategoryState && (
+                <option value="" disabled selected>
+                  Lütfen bir alt kategori seçiniz.
                 </option>
               )}
               {subcategoriesState &&
@@ -283,6 +321,7 @@ export default function AddMaterial() {
             <input
               min={100}
               max={300}
+              required
               onChange={(e) => {
                 if (e.target.value > 300) {
                   e.target.value = 300;
@@ -318,6 +357,7 @@ export default function AddMaterial() {
                 Materyal Açıklaması
               </div>
               <textarea
+                required
                 id="add-material-text-area"
                 placeholder="Materyal açıklamasını giriniz"
                 onChange={(e) => {

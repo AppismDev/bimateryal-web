@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import { addMaterial } from "./addMaterialAPI";
 
 const initialState = {
@@ -9,8 +10,8 @@ const initialState = {
   error: undefined,
   media: [],
   materialName: "",
-  materialCategory: undefined,
-  materialSubCategory: undefined,
+  materialCategory: "",
+  materialSubCategory: "",
   materialPrice: 0,
   materialDescription: "",
 };
@@ -60,10 +61,17 @@ export const addMaterialSlice = createSlice({
     },
     [addMaterialAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.error = undefined;
+      toast("Material added successfully", {
+        type: "success",
+      });
     },
     [addMaterialAsync.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
+      toast(action.error.message, {
+        type: "error",
+      });
     },
   },
 });
@@ -80,18 +88,24 @@ export const {
   setIsMaterialMediasDragActive,
 } = addMaterialSlice.actions;
 
-export const materialName = (state) => state.addMaterial.mainPhoto;
+export const materialName = (state) => state.addMaterial.materialName;
+
 export const materialCategory = (state) => state.addMaterial.materialCategory;
+
 export const materialSubCategory = (state) =>
   state.addMaterial.materialSubCategory;
 
 export const materialPrice = (state) => state.addMaterial.materialPrice;
+
 export const materialDescription = (state) =>
   state.addMaterial.materialDescription;
+
 export const materialMedia = (state) => state.addMaterial.media;
 export const isMainPhotoDragActive = (state) =>
   state.addMaterial.isMainPhotoDragActive;
+
 export const mainPhoto = (state) => state.addMaterial.mainPhoto;
+
 export const isMaterialPhotosDragActive = (state) =>
   state.addMaterial.isMaterialPhotosDragActive;
 

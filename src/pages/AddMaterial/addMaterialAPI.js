@@ -6,32 +6,25 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 
-export async function addMaterial({
-  categoryId,
-  coverImage,
-  description,
-  location,
-  media,
-  name,
-  ownerUserId,
-  price,
-  subCategoryId,
-}) {
+export async function addMaterial(material) {
   try {
     const newDocRef = doc(collection(firestore, "Materials"));
-    var coverImageUrl = await uploadMaterialMainPhoto(coverImage, newDocRef.id);
-    var media = await uploadMaterialMedias(media, newDocRef.id);
+    var coverImageUrl = await uploadMaterialMainPhoto(
+      material.coverImage,
+      newDocRef.id
+    );
+    var media = await uploadMaterialMedias(material.media, newDocRef.id);
 
     const data = {
-      categoryId,
+      categoryId: material.categoryId,
       coverImageUrl: coverImageUrl,
-      description,
-      location,
+      description: material.description,
+      location: material.location,
       mediaUrls: media,
-      name,
-      ownerUserId,
-      price,
-      subCategoryId,
+      name: material.name,
+      ownerUserId: material.ownerUserId,
+      price: material.price,
+      subCategoryId: material.subCategoryId,
       isActive: true,
       createdAt: new Date(),
       id: newDocRef.id,

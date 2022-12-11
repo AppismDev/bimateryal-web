@@ -6,6 +6,7 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .home-page-category-header {
@@ -18,11 +19,12 @@
 
 .home-page-category-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin-top: 24px;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    row-gap: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
     max-width: 100vw;
-    overflow: hidden;
-    row-gap: 16px;
+    overflow: visible;
     justify-content: space-between;
 }
 
@@ -53,8 +55,18 @@
 
 .home-page-category-item {
     display: flex;
+    margin-right: 24px;
+    min-width: 300px;
     flex-direction: row;
     align-items: center;
+    padding: 6px;
+    transition: all 0.2s ease-in-out;
+}
+.home-page-category-item:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transform: scale(1.02);
 }
 
 .home-page-category-item img {

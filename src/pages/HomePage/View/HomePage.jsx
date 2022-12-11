@@ -4,6 +4,10 @@ import NewProducts from "../../../components/HomePage/NewProducts/View/NewProduc
 import PopularUsers from "../../../components/HomePage/PopularUsers/View/PopularUsers";
 
 function HomePage() {
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
+
   return (
     <div className="home-page-container">
       <HomePageCategories />

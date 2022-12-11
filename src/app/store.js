@@ -3,6 +3,7 @@ import counterReducer from "../features/counter/counterSlice";
 import userReducer from "../pages/SignInPage/signInSlice";
 import addMaterialSlice from "../pages/AddMaterial/addMaterialSlice";
 import categoriesSlice from "../pages/CategoriesPage/categoriesSlice";
+import homePageCategoriesSlice from "../components/HomePage/Categories/homePageCategoriesSlice";
 
 export const store = configureStore({
   // middleware: (getDefaultMiddleware) =>
@@ -21,5 +22,6 @@ export const store = configureStore({
     user: userReducer,
     addMaterial: addMaterialSlice,
     categories: categoriesSlice,
+    homePageCategories: homePageCategoriesSlice,
   },
 });
