@@ -8,6 +8,7 @@ import Messages from "./pages/MessagesPage/View/Messages";
 import Home from "./pages/HomePage/View/HomePage";
 import Footer from "./components/Footer/View/Footer";
 import KullanımSartlari from "./components/BiMateryal/KullanımSartlari.jsx";
+import ProductDetails from "./pages/ProductDetail/View/ProductDetails";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route exact path="/home" component={Home}></Route>
           <Route exact path="/messages" component={Messages}></Route>
           <Route exact path="/categories" component={Categories}></Route> 
-          <Route exact path="/kullanimsartları" component={KullanımSartlari}></Route> 
+          <Route exact path="/kullanimsartları" component={KullanımSartlari}></Route>
+          <Route exact path="/bizimtakim" component={ProductDetails}></Route> 
 
         </Switch>
       </Container>
