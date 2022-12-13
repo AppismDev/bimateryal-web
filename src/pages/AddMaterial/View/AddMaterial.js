@@ -5,6 +5,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
 import {
   isMainPhotoDragActive,
+  isMaterialPhotosDragActive,
   mainPhoto,
   setIsMainPhotoDragActive,
   setMainPhoto,
@@ -24,6 +25,7 @@ import {
   addMaterialAsync,
   materialName,
   materialDescription,
+  clearState,
 } from "../addMaterialSlice";
 
 import {
@@ -35,6 +37,7 @@ import {
   subcategoriesLoadingSelector,
 } from "../../CategoriesPage/categoriesSlice";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 export default function AddMaterial() {
   const mainImageRef = useRef(null);
@@ -61,7 +64,11 @@ export default function AddMaterial() {
   const materialNameState = useSelector(materialName);
   const materialDescriptionState = useSelector(materialDescription);
   const materialPriceState = useSelector(materialPrice);
-
+  const isMaterialPhotosDragActiveState = useSelector(
+    isMaterialPhotosDragActive
+  );
+  const errorState = useSelector((state) => state.addMaterial.error);
+  const history = useHistory();
   // ------------------------------- kategoriler ve subcategoryler daha önce getirilmediyse git getir ------------------------------
   useEffect(() => {
     if (categoriesLoadingState) return;
@@ -97,7 +104,9 @@ export default function AddMaterial() {
     dispatch(setIsMaterialMediasDragActive(false));
     if (e.dataTransfer.files) {
       console.log("Material medias: ", e.dataTransfer.files);
-      dispatch(setMaterialMedia([...e.dataTransfer.files]));
+      dispatch(
+        setMaterialMedia([...e.dataTransfer.files, ...materialMediaState])
+      );
     }
   };
 
@@ -124,12 +133,8 @@ export default function AddMaterial() {
   // ------------------------------------- main inputa drag ve drop edilince yapılacak işlemler -------------------------------------
   return (
     <div>
-      {isLoadingState && (
-        <div className="add-material-loading">Yükleniyor...</div>
-      )}
-
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           if (mainPhotoState == undefined) {
             toast.error("Lütfen bir fotoğraf seçiniz");
@@ -175,7 +180,16 @@ export default function AddMaterial() {
             media: materialMediaState,
             ownerUserId: userState.user.uid,
           };
-          dispatch(addMaterialAsync(data));
+          var a = await toast.promise(dispatch(addMaterialAsync(data)), {
+            pending: "İlan Yayınlanıyor...",
+            success: "İlan başarıyla yayınlandı",
+            error: "İlan yayınlanırken bir hata oluştu",
+          });
+
+          if (errorState == undefined) {
+            dispatch(clearState());
+            history.push("/");
+          }
         }}
         className="add-material-root"
       >
@@ -199,7 +213,7 @@ export default function AddMaterial() {
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
-            handleDrop={handleDrop}
+            onDrop={handleDrop}
           >
             <input
               ref={mainImageRef}
@@ -214,7 +228,11 @@ export default function AddMaterial() {
               }}
               multiple={false}
             />
-            <RiImageAddFill color="00983a" fontSize={80} />
+            <RiImageAddFill
+              style={{ pointerEvents: "none" }}
+              color="00983a"
+              fontSize={80}
+            />
             {!isMainPhotoDragActiveState ? (
               <div>
                 <div id="add-material-photo-text">+ Materyal Fotoğrafı Seç</div>
@@ -319,14 +337,21 @@ export default function AddMaterial() {
           >
             <div className="add-material-select-label">Puan Karşılığı</div>
             <input
-              min={100}
-              max={300}
+              disabled={!materialCategoryState}
+              min={
+                materialCategoryState
+                  ? getSelectedCategory(categoriesState, materialCategoryState)
+                      .minScore
+                  : 0
+              }
+              max={
+                materialCategoryState
+                  ? getSelectedCategory(categoriesState, materialCategoryState)
+                      .maxScore
+                  : 0
+              }
               required
               onChange={(e) => {
-                if (e.target.value > 300) {
-                  e.target.value = 300;
-                }
-
                 dispatch(setMaterialPrice(e.target.value));
               }}
               id="add-material-input"
@@ -338,9 +363,8 @@ export default function AddMaterial() {
               <div className="add-material-info-text-container">
                 <AiOutlineInfoCircle size={24} />
                 {`${
-                  categoriesState.find(
-                    (e) => e.categoryId == materialCategoryState
-                  ).categoryName
+                  getSelectedCategory(categoriesState, materialCategoryState)
+                    .categoryName
                 } kategorisi için minimum ${
                   categoriesState.find(
                     (e) => e.categoryId == materialCategoryState
@@ -352,6 +376,8 @@ export default function AddMaterial() {
                 } puan seçebilirsiniz.`}
               </div>
             )}
+          </div>
+          <div className="add-material-label-column">
             <div id="add-material-text-area-container">
               <div className="add-material-select-label">
                 Materyal Açıklaması
@@ -365,32 +391,40 @@ export default function AddMaterial() {
                 }}
               />
             </div>
+          </div>
+          <div className="add-material-label-column">
+            <div className="add-material-select-label">Materyal Medyası</div>
+            <div
+              id="add-material-sub-images-form"
+              onDragEnter={handleMediaDrag}
+              onDragOver={handleMediaDrag}
+              onDragLeave={handleMediaDrag}
+              onDrop={handleMediaDrop}
+            >
+              <input
+                ref={mediaInputRef}
+                style={{ display: "none" }}
+                accept="image/*"
+                type="file"
+                multiple
+                name="input-media"
+                onChange={(e) => {
+                  dispatch(
+                    setMaterialMedia([...e.target.files, ...materialMediaState])
+                  );
+                }}
+              />
 
-            <div className="add-material-label-column">
-              <div className="add-material-select-label">Materyal Medyası</div>
-              <form
-                onDragEnter={handleMediaDrag}
-                onDragOver={handleMediaDrag}
-                onDragLeave={handleMediaDrag}
-                onDrop={handleMediaDrop}
-              >
-                <input
-                  ref={mediaInputRef}
-                  style={{ display: "none" }}
-                  accept="image/*"
-                  type="file"
-                  name="input-media"
-                />
-
+              {!isMaterialPhotosDragActiveState ? (
                 <div className="add-material-sub-images-container">
-                  <div id="add-material-sub-images-add-more">
-                    <RiImageAddFill
-                      onClick={(e) => {
-                        mediaInputRef.current.click();
-                      }}
-                      color="grey"
-                      fontSize={32}
-                    />
+                  <div
+                    id="add-material-sub-images-add-more"
+                    style={{ pointerEvents: "all" }}
+                    onClick={(e) => {
+                      mediaInputRef.current.click();
+                    }}
+                  >
+                    <RiImageAddFill color="grey" fontSize={32} />
                   </div>
                   {materialMediaState.map((e, index) => {
                     return (
@@ -417,14 +451,21 @@ export default function AddMaterial() {
                     );
                   })}
                 </div>
-              </form>
+              ) : (
+                <div className="add-material-sub-images-dropzone">
+                  Dosyaları Buraya Bırakın
+                </div>
+              )}
             </div>
-            <button type="submit" id="add-material-button">
-              Materyal Ekle
-            </button>
           </div>
+          <button type="submit" id="add-material-button">
+            Materyal Ekle
+          </button>
         </div>
       </form>
     </div>
   );
+}
+function getSelectedCategory(categoriesState, materialCategoryState) {
+  return categoriesState.find((e) => e.categoryId == materialCategoryState);
 }

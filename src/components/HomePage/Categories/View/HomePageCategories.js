@@ -35,7 +35,10 @@ export default function HomePageCategories() {
       )}
       <div className="home-page-category-content">
         {topFiveCategories.map((category) => (
-          <div className="home-page-category-item">
+          <Link
+            to={`categoryMaterials?id=${category.categoryId}&name=${category.categoryName}`}
+            className="home-page-category-item"
+          >
             <img src={category.categoryIconUrl} alt="categoryImage" />
             <div className="home-page-category-item-content">
               <div className="home-page-category-item-content-title">
@@ -45,7 +48,7 @@ export default function HomePageCategories() {
                 {category.description}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

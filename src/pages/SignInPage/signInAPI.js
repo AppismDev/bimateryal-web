@@ -27,6 +27,7 @@ export default async function signInWithGoogle() {
     accountProvider: "Google",
     fcmToken: null,
     activeAddressId: null,
+    points: 0,
     uid: user.uid,
     createdAt: new Date(),
   };

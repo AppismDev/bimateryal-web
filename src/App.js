@@ -6,6 +6,7 @@ import Categories from "./pages/CategoriesPage/View/Categories";
 import Messages from "./pages/MessagesPage/View/Messages";
 import Footer from "./components/Footer/View/Footer";
 import KullanımSartlari from "./components/BiMateryal/KullanımSartlari.jsx";
+import ProductDetails from "./pages/ProductDetail/View/ProductDetails";
 import HomePage from "./pages/HomePage/View/HomePage";
 import MaterialDetails from "./pages/MaterialDetailsPage/View/MaterialDetails";
 import SignInPage from "./pages/SignInPage/View/SignIn";
@@ -14,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddMaterial from "./pages/AddMaterial/View/AddMaterial";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CategoryMaterialsPage from "./pages/CategoryMaterialsPage/View/CategoryMaterialsPage";
 function App() {
   const userValue = useSelector(user);
   const dispatch = useDispatch();
@@ -40,6 +42,15 @@ function App() {
               <Route exact path="/messages" component={Messages}></Route>
               <Route exact path="/categories" component={Categories}></Route>
               <Route exact path="/addMaterial" component={AddMaterial}></Route>
+              <Route
+                path="/categoryMaterials"
+                component={CategoryMaterialsPage}
+              ></Route>
+              <Route
+                exact
+                path="/bizimtakim"
+                component={ProductDetails}
+              ></Route>
               <Route
                 exact
                 path="/product/details"

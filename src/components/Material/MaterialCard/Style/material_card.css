@@ -1,0 +1,53 @@
+.home-page-new-products-item {
+    display: flex;
+    min-width: 300px;
+    flex-direction: column;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 16px;
+    overflow: hidden;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    color: rgb(32, 32, 32);
+}
+
+
+
+.home-page-new-products-item:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;    
+    
+}
+
+.home-page-new-products-item:focus {
+    transform: scale(1.05);
+
+}
+
+.home-page-new-products-item img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.home-page-new-products-item-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-page-new-products-item-content-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.home-page-new-products-item-content-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(136, 136, 136);
+    text-align: start;
+}

@@ -1,56 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-const users = [
-  {
-    userImage: "https://cdn-icons-png.flaticon.com/512/219/219986.png",
-    userName: "Ahmet",
-    totalPoints: 250,
-  },
-  {
-    userImage: "https://cdn-icons-png.flaticon.com/512/219/219986.png",
-    userName: "Mehmet",
-    totalPoints: 250,
-  },
-  {
-    userImage: "https://cdn-icons-png.flaticon.com/512/219/219986.png",
-    userName: "Ali",
-    totalPoints: 250,
-  },
-  {
-    userImage: "https://cdn-icons-png.flaticon.com/512/219/219986.png",
-    userName: "Veli",
-    totalPoints: 250,
-  },
-  {
-    userImage: "https://cdn-icons-png.flaticon.com/512/219/219986.png",
-    userName: "Veli",
-    totalPoints: 250,
-  },
-];
+import {
+  getPopularUsersAsync,
+  selectPopularUsers,
+  selectPopularUsersLoading,
+} from "../popularUsersSlice";
 
 export default function PopularUsers() {
+  const dispatch = useDispatch();
+  const users = useSelector(selectPopularUsers);
+  const isLoading = useSelector(selectPopularUsersLoading);
+
+  React.useEffect(() => {
+    dispatch(getPopularUsersAsync());
+  }, []);
+
   return (
     <div className="home-page-popular-users">
       <div className="home-page-popular-users-header">
         <h2>Popüler Kullanıcılar</h2>
         <Link to="/">Liderlik Tablosu</Link>
       </div>
-      <div className="home-page-popular-users-content">
-        {users.map((users) => (
-          <div className="home-page-popular-users-item">
-            <img src={users.userImage} alt="popular-usersImage" />
-            <div className="home-page-popular-users-item-content">
-              <div className="home-page-popular-users-item-content-title">
-                {users.userName}
-              </div>
-              <div className="home-page-popular-users-item-content-subtitle">
-                {users.totalPoints} Puan
+      {isLoading ? (
+        <div>Yükleniyor...</div>
+      ) : (
+        <div className="home-page-popular-users-content">
+          {users.map((users) => (
+            <div className="home-page-popular-users-item">
+              <img
+                src={
+                  users.photoUrl ??
+                  "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
+                }
+                alt="popular-usersImage"
+              />
+              <div className="home-page-popular-users-item-content">
+                <div className="home-page-popular-users-item-content-title">
+                  {users.displayName}
+                </div>
+                <div className="home-page-popular-users-item-content-subtitle">
+                  {users.points} Puan
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

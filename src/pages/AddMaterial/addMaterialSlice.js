@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 import { addMaterial } from "./addMaterialAPI";
 
 const initialState = {
@@ -54,6 +53,19 @@ export const addMaterialSlice = createSlice({
     setIsMaterialMediasDragActive(state, action) {
       state.isMaterialPhotosDragActive = action.payload;
     },
+    clearState(state, action) {
+      state.isLoading = false;
+      state.isMainPhotoDragActive = false;
+      state.isMaterialPhotosDragActive = false;
+      state.mainPhoto = undefined;
+      state.error = undefined;
+      state.media = [];
+      state.materialName = "";
+      state.materialCategory = "";
+      state.materialSubCategory = "";
+      state.materialPrice = 0;
+      state.materialDescription = "";
+    },
   },
   extraReducers: {
     [addMaterialAsync.pending]: (state, action) => {
@@ -62,16 +74,10 @@ export const addMaterialSlice = createSlice({
     [addMaterialAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.error = undefined;
-      toast("Material added successfully", {
-        type: "success",
-      });
     },
     [addMaterialAsync.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
-      toast(action.error.message, {
-        type: "error",
-      });
     },
   },
 });
@@ -86,6 +92,7 @@ export const {
   setMaterialPrice,
   setMaterialSubCategory,
   setIsMaterialMediasDragActive,
+  clearState,
 } = addMaterialSlice.actions;
 
 export const materialName = (state) => state.addMaterial.materialName;
