@@ -5,12 +5,13 @@ import { store } from "./app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+
 import "./pages/";
 import "./components/";
 
-import "semantic-ui-css/semantic.min.css";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { Counter } from "./features/counter/Counter";
 const container = document.getElementById("root");
 const root = createRoot(container);
 
