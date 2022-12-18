@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import HomePageCategories from "../../../components/HomePage/Categories/View/HomePageCategories";
 import NewProducts from "../../../components/HomePage/NewProducts/View/NewProducts";
 import PopularUsers from "../../../components/HomePage/PopularUsers/View/PopularUsers";
 
 function HomePage() {
-  useEffect(() => {
-    document.title = "Home";
-  }, []);
-
   return (
     <div className="home-page-container">
       <HomePageCategories />

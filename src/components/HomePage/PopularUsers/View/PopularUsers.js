@@ -28,7 +28,10 @@ export default function PopularUsers() {
       ) : (
         <div className="home-page-popular-users-content">
           {users.map((users) => (
-            <div className="home-page-popular-users-item">
+            <Link
+              to={{ pathname: `/users/profile/${users.uid}` }}
+              className="home-page-popular-users-item"
+            >
               <img
                 src={
                   users.photoUrl ??
@@ -41,10 +44,10 @@ export default function PopularUsers() {
                   {users.displayName}
                 </div>
                 <div className="home-page-popular-users-item-content-subtitle">
-                  {users.points} Puan
+                  {users.earnedPoints} Puan
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

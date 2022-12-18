@@ -6,6 +6,7 @@ import {
   selectNewProducts,
   selectNewProductsLoading,
 } from "../newProductsSlice";
+import MaterialCard from "../../../Material/MaterialCard/View/MaterialCard";
 
 export default function NewProducts() {
   const dispatch = useDispatch();
@@ -26,22 +27,7 @@ export default function NewProducts() {
       ) : (
         <div className="home-page-new-products-content">
           {products &&
-            products.map((product) => (
-              <Link
-                to="/product/details"
-                className="home-page-new-products-item"
-              >
-                <img
-                  className=""
-                  src={product.coverImageUrl}
-                  alt={product.name}
-                />
-                <div className="home-page-new-products-item-content ">
-                  <h3>{product.name}</h3>
-                  <p>{product.description}</p>
-                </div>
-              </Link>
-            ))}
+            products.map((product) => <MaterialCard material={product} />)}
         </div>
       )}
     </div>

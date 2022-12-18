@@ -7,6 +7,10 @@ import homePageCategoriesSlice from "../components/HomePage/Categories/homePageC
 import categoryMaterialsSlice from "../pages/CategoryMaterialsPage/categorySlice";
 import popularUsersSlice from "../components/HomePage/PopularUsers/popularUsersSlice";
 import newProductsSlice from "../components/HomePage/NewProducts/newProductsSlice";
+import profileSlice from "../pages/ProfilePage/profileSlice";
+import searchbarSlice from "../components/SearchBar/searchbarSlice";
+import materialDetailsSlice from "../pages/MaterialDetailsPage/materialDetailsSlice";
+import notificationsSlice from "../pages/NotificationsPage/notificationsSlice";
 
 export const store = configureStore({
   // middleware: (getDefaultMiddleware) =>
@@ -29,5 +33,9 @@ export const store = configureStore({
     categoryMaterials: categoryMaterialsSlice,
     popularUsers: popularUsersSlice,
     newMaterials: newProductsSlice,
+    profile: profileSlice,
+    searchbar: searchbarSlice,
+    materialDetails: materialDetailsSlice,
+    notifications: notificationsSlice,
   },
 });

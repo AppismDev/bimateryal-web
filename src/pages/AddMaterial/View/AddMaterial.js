@@ -133,66 +133,7 @@ export default function AddMaterial() {
   // ------------------------------------- main inputa drag ve drop edilince yapılacak işlemler -------------------------------------
   return (
     <div>
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          if (mainPhotoState == undefined) {
-            toast.error("Lütfen bir fotoğraf seçiniz");
-            return;
-          }
-          if (materialNameState == undefined) {
-            toast.error("Lütfen bir isim giriniz");
-            return;
-          }
-          if (materialDescriptionState == undefined) {
-            toast.error("Lütfen bir açıklama giriniz");
-            return;
-          }
-
-          if (materialCategoryState == undefined) {
-            toast.error("Lütfen bir kategori seçiniz");
-            return;
-          }
-
-          if (materialSubCategoryState == undefined) {
-            toast.error("Lütfen bir alt kategori seçiniz");
-            return;
-          }
-
-          if (materialPriceState == undefined) {
-            toast.error("Lütfen bir fiyat giriniz");
-            return;
-          }
-
-          if (materialMediaState == undefined) {
-            toast.error("Lütfen bir fotoğraf seçiniz");
-            return;
-          }
-
-          const data = {
-            name: materialNameState,
-            description: materialDescriptionState,
-            categoryId: materialCategoryState,
-            subCategoryId: materialSubCategoryState,
-            price: materialPriceState,
-            coverImage: mainPhotoState,
-            location: null,
-            media: materialMediaState,
-            ownerUserId: userState.user.uid,
-          };
-          var a = await toast.promise(dispatch(addMaterialAsync(data)), {
-            pending: "İlan Yayınlanıyor...",
-            success: "İlan başarıyla yayınlandı",
-            error: "İlan yayınlanırken bir hata oluştu",
-          });
-
-          if (errorState == undefined) {
-            dispatch(clearState());
-            history.push("/");
-          }
-        }}
-        className="add-material-root"
-      >
+      <form type="submit" className="add-material-root">
         <div id="add-material-left">
           {mainPhotoState && (
             <div className="add-material-main-photo-container">
@@ -458,7 +399,67 @@ export default function AddMaterial() {
               )}
             </div>
           </div>
-          <button type="submit" id="add-material-button">
+          <button
+            onClick={async (e) => {
+              console.log("Material media state: ");
+
+              if (mainPhotoState == undefined) {
+                toast.error("Lütfen bir fotoğraf seçiniz");
+                return;
+              }
+              if (materialNameState == undefined) {
+                toast.error("Lütfen bir isim giriniz");
+                return;
+              }
+              if (materialDescriptionState == undefined) {
+                toast.error("Lütfen bir açıklama giriniz");
+                return;
+              }
+
+              if (materialCategoryState == undefined) {
+                toast.error("Lütfen bir kategori seçiniz");
+                return;
+              }
+
+              if (materialSubCategoryState == undefined) {
+                toast.error("Lütfen bir alt kategori seçiniz");
+                return;
+              }
+
+              if (materialPriceState == undefined) {
+                toast.error("Lütfen bir fiyat giriniz");
+                return;
+              }
+
+              if (materialMediaState == undefined) {
+                toast.error("Lütfen bir fotoğraf seçiniz");
+                return;
+              }
+              const data = {
+                name: materialNameState,
+                description: materialDescriptionState,
+                categoryId: materialCategoryState,
+                subCategoryId: materialSubCategoryState,
+                price: materialPriceState,
+                coverImage: mainPhotoState,
+                location: null,
+                media: materialMediaState,
+                ownerUserId: userState.user.uid,
+              };
+              var a = await toast.promise(dispatch(addMaterialAsync(data)), {
+                pending: "İlan Yayınlanıyor...",
+                success: "İlan başarıyla yayınlandı",
+                error: "İlan yayınlanırken bir hata oluştu",
+              });
+
+              if (errorState == undefined) {
+                dispatch(clearState());
+                history.push("/");
+              }
+            }}
+            type="submit"
+            id="add-material-button"
+          >
             Materyal Ekle
           </button>
         </div>

@@ -11,7 +11,6 @@ import "./components/";
 
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { Counter } from "./features/counter/Counter";
 const container = document.getElementById("root");
 const root = createRoot(container);
 

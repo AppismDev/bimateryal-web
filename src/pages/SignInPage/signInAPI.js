@@ -9,6 +9,8 @@ import {
   where,
 } from "firebase/firestore";
 
+import { getUserFromFirestore } from "../../services/firebase/UserService.js";
+
 import { auth, firestore } from "../../services/firebase/FirebaseConfig";
 
 export default async function signInWithGoogle() {
@@ -17,9 +19,9 @@ export default async function signInWithGoogle() {
   const result = await signInWithPopup(auth, provider);
 
   const credential = GoogleAuthProvider.credentialFromResult(result);
-  const token = credential.accessToken;
-
   const user = result.user;
+  console.log("user: ", user);
+
   const usertobeRegistered = {
     displayName: user.displayName,
     email: user.email,
@@ -28,13 +30,13 @@ export default async function signInWithGoogle() {
     fcmToken: null,
     activeAddressId: null,
     points: 0,
+    earnedPoints: 0,
     uid: user.uid,
     createdAt: new Date(),
   };
 
   // eğer kullanıcı undf değilse kayıtlı demektir
   var userFromFirebase = await getUserFromFirestore(user.uid);
-  console.log("userFromFirebase: ", userFromFirebase);
 
   if (userFromFirebase == undefined) {
     await saveUserToFirestore(usertobeRegistered);
@@ -46,24 +48,16 @@ export default async function signInWithGoogle() {
   }
 }
 
-async function getUserFromFirestore(uid) {
-  // get doc from firebase with uid
-  const q = query(collection(firestore, "Users"), where("uid", "==", uid));
-  const querySnapshot = await getDocs(q);
-  if (querySnapshot.docs.length == 0) {
-    return undefined;
-  }
-  return querySnapshot.docs[0].data();
-}
-
 async function saveUserToFirestore({
   displayName,
   email,
-  photoUrl,
+  photoURL,
   accountProvider,
   fcmToken,
   uid,
   activeAddressId,
+  createdAt,
+  earnedPoints,
 }) {
   // add doc to firebase
 
@@ -76,9 +70,12 @@ async function saveUserToFirestore({
       email,
       fcmToken: fcmToken || null,
       activeAddressId: activeAddressId || null,
-      photoUrl: photoUrl || null,
+      photoUrl: photoURL || null,
       uid: uid,
+      earnedPoints,
+      createdAt,
       accountProvider,
+      points: 0,
     });
   } catch (err) {
     console.log("ERROR in saveUserToFirestore: ", err);

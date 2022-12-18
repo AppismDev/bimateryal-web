@@ -4,8 +4,13 @@ import { CgProfile } from "react-icons/cg";
 import { FiBell, FiSettings } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { Link, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { user } from "../../../pages/SignInPage/signInSlice";
+import SearchBar from "../../SearchBar/View/SearchBar";
+import Notification from "../../Notification/View/Notification";
 
 export default function Menu() {
+  const userState = useSelector(user);
   const history = useHistory();
   return (
     <div>
@@ -16,31 +21,29 @@ export default function Menu() {
             <div className="icon-text">Ana Sayfa</div>
           </Link>
 
-          <Link to="messages" className="icon-container">
+          <Link to="/messages" className="icon-container">
             <BiMessage size={24} />
             <div className="icon-text">Mesajlarım</div>
           </Link>
 
-          <Link to="categories" className="icon-container">
+          <Link to="/categories" className="icon-container">
             <BiCategory size={24} />
             <div className="icon-text">Kategoriler</div>
           </Link>
         </div>
         <div className="menu-right">
-          <div className="menu-input-container">
-            <CiSearch size={24} className="menu-input-icon" />
-            <input
-              className="menu-input"
-              type="text"
-              placeholder="Kitap, Kalem, Defter..."
-            />
-          </div>
+          <SearchBar />
           <div className="menu-right-icon-row">
-            <Link to="/">
+            <Link
+              to={{
+                pathname: `/users/profile/${userState.uid}`,
+              }}
+            >
               <CgProfile size={24} />
             </Link>
             <Link to="/">
-              <FiBell size={24} />
+              {/* <FiBell size={24} /> */}
+              <Notification />
             </Link>
             <Link to="/">
               <FiSettings size={24} />

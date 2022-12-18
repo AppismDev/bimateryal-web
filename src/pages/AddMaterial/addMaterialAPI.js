@@ -1,5 +1,5 @@
 import { firestore, storage } from "../../services/firebase/FirebaseConfig";
-import { collection, addDoc, doc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import {
   getDownloadURL,
   ref as sRef,
@@ -13,6 +13,7 @@ export async function addMaterial(material) {
       material.coverImage,
       newDocRef.id
     );
+
     var media = await uploadMaterialMedias(material.media, newDocRef.id);
 
     const data = {
@@ -30,7 +31,7 @@ export async function addMaterial(material) {
       id: newDocRef.id,
     };
 
-    await addDoc(collection(firestore, "Materials"), data);
+    await setDoc(newDocRef, data);
   } catch (err) {
     console.log(err);
   }

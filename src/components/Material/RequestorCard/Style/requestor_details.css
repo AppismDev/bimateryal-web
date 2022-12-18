@@ -1,0 +1,31 @@
+.requestor-details-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 12px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 50%;
+
+}
+
+.requestor-name-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+}
+.requestor-name-row > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.requestor-details-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    
+}

@@ -1,0 +1,126 @@
+:root {
+    --search-bar-height: 40px;
+    --content-container-border-radius: 0px 0px 8px 8px;
+    --search-input-color: rgb(240, 240, 240);
+}
+
+.search-bar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 3;
+    width: 100%;
+    position: relative;
+    justify-content: space-between;
+}
+
+.search-bar-icon {
+    position: absolute;
+    margin-left: 8px;    
+}
+
+.search-bar-icon-clear {
+    position: absolute;
+    margin-right: 8px;    
+    right: 0;
+}
+
+.search-bar-icon-clear:hover {
+    cursor: pointer;
+}
+
+.search-bar {
+    height: var(--search-bar-height);
+    /* border-radius: 8px 8px 0px 0px; */
+    border-radius: 8px;
+    border: none;
+    background-color: var(--search-input-color);
+    padding-left: 42px;
+    padding-right: 16px;
+    font-size: 1em;
+    font-weight: 500;
+    width: 100%;
+}
+
+.search-bar.active {
+    border-radius: 8px 8px 0px 0px;
+}
+
+
+.search-bar:focus {
+    outline: none;
+}
+
+.search-bar-content-container.hidden {
+    display: none;
+}
+
+.search-bar-content-container.active {
+    display: flex;
+}
+.search-bar-content-container {
+    z-index: 999;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    position: absolute;
+    border-radius: var(--content-container-border-radius);
+    background-color: var(--search-input-color);
+
+
+    top: var(--search-bar-height);
+    /* adjust with to parent's width  */
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-bar-content-section {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+    width: 100%;
+}
+
+.search-bar-content-section > h3 {
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-top: 12px;
+    margin-bottom: 0;
+    padding: 8px;
+}
+
+.search-bar-content-section-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar-content-section-body-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    padding: 8px;
+    border-radius: var(--content-container-border-radius);
+    transition: all 0.2s ease-in-out;
+}
+
+.search-bar-content-section-body-item:hover {
+    background-color: rgb(196, 196, 196);
+    cursor: pointer;
+}
+
+.search-bar-content-section-body-item > img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+#search-bar-three-characters {
+    margin: 24px;
+    font-weight: 600;
+}

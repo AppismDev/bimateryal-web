@@ -8,9 +8,11 @@ import {
   selectCategoryMaterials,
   selectCategoryMaterialsLoading,
   clearState,
+  getSubCategoryMaterialsAsync,
 } from "../categorySlice";
 import useQuery from "../../../utilities/customHooks/useQuery";
 import MaterialCard from "../../../components/Material/MaterialCard/View/MaterialCard";
+import { toast } from "react-toastify";
 export default function CategoryMaterialsPage(props) {
   const dispatch = useDispatch();
   const page = useSelector(selectCategoryMaterialsPage);
@@ -20,7 +22,15 @@ export default function CategoryMaterialsPage(props) {
   let query = useQuery();
 
   useEffect(() => {
-    dispatch(getCategoryMaterialsAsync({ page, categoryId: query.get("id") }));
+    if (query.get("type") == "subcategory") {
+      dispatch(
+        getSubCategoryMaterialsAsync({ page, categoryId: query.get("id") })
+      );
+    } else {
+      dispatch(
+        getCategoryMaterialsAsync({ page, categoryId: query.get("id") })
+      );
+    }
     return () => {
       dispatch(clearState());
     };
