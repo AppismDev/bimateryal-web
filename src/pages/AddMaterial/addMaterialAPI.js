@@ -27,6 +27,7 @@ export async function addMaterial(material) {
       price: material.price,
       subCategoryId: material.subCategoryId,
       isActive: true,
+      status: "pending",
       createdAt: new Date(),
       id: newDocRef.id,
     };

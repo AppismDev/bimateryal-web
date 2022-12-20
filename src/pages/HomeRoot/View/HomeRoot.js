@@ -17,18 +17,22 @@ import { listenUserNotifications } from "../../HomePage/homePageAPI";
 import { user } from "../../SignInPage/signInSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setNotifications } from "../../NotificationsPage/notificationsSlice";
+import DialogContainer from "../../../components/DialogContainer/View/DialogContainer";
+import NewMaterials from "../../NewMaterials/View/NewMaterials";
 export default function HomeRoot() {
   const selectUser = useSelector(user);
   const dispatch = useDispatch();
   useEffect(() => {
     document.title = "Home";
-    listenUserNotifications(selectUser.uid, (notification, initState) => {
-      dispatch(setNotifications(notification));
-      if (!initState) {
-        toast.info("New Notification");
+    listenUserNotifications(
+      selectUser.uid,
+      (notification, initState, isUpdate, isDelete, isAdd) => {
         dispatch(setNotifications(notification));
+        if (!initState && isAdd) {
+          toast.info("New Notification");
+        }
       }
-    });
+    );
     // function getLocation() {
     //   if (navigator.geolocation) {
     //     navigator.geolocation.getCurrentPosition(
@@ -49,6 +53,7 @@ export default function HomeRoot() {
     <div className="App">
       <Menu />
       <ToastContainer />
+      <DialogContainer />
       <div className="main">
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -64,6 +69,7 @@ export default function HomeRoot() {
           />
           <Route exact path="/users/profile/:id" component={ProfilePage} />
           <Route exact path="/kullanimsartları" component={KullanımSartlari} />
+          <Route exact path="/newMaterials" component={NewMaterials} />
         </Switch>
       </div>
       <Footer />

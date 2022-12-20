@@ -29,3 +29,42 @@
     width: 100%;
     
 }
+
+.requestor-button-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+    justify-content: space-between;
+
+}
+
+.requestor-button-row > button {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background-color: #21c7b1;
+
+}
+.requestor-button-row > button.cancel {
+    background-color: rgb(236, 37, 37);
+}
+.requestor-button-row > button.cancel:hover {
+    background-color: red;
+}
+
+
+.requestor-button-row > button:hover {
+    background-color: #1daa9b;
+}
+
+.requestor-button-row > button:active {
+    transform: scale(0.95);
+}

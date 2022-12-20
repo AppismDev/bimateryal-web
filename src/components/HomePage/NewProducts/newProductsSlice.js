@@ -33,7 +33,6 @@ export const newProductsSlice = createSlice({
     [getNewMaterialsAsync.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
-      toast.error("Yeni materyaller yüklenemedi.");
     },
   },
 });

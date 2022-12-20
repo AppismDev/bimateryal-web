@@ -4,7 +4,7 @@ import { query, orderBy, limit, getDocs, collection } from "firebase/firestore";
 export async function getPopularUsers() {
   const q = query(
     collection(firestore, "Users"),
-    orderBy("points", "desc"),
+    orderBy("earnedPoints", "desc"),
     limit(5)
   );
 

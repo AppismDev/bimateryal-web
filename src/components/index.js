@@ -11,5 +11,7 @@ export * from "./Tab/Style/tab_container.css";
 export * from "./SearchBar/Style/search_bar.css";
 export * from "./ActiveMaterialPosts/Style/active_material_posts.css";
 export * from "./Notification/Style/notification_style.css";
+export * from "./Dialog/Style/dialog.css";
+export * from "./DialogContainer/Style/dialog_container.css";
 //export * from "./Menu/View/Menu.jsx";
 //src\components\Menu\View\Menu.jsx

@@ -4,8 +4,8 @@ import { FiBell, FiSettings } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  setNotifications,
   selectNotifications,
+  setNotificationAsReadedAsync,
 } from "../../../pages/NotificationsPage/notificationsSlice";
 
 export default function Notification() {
@@ -32,6 +32,9 @@ export default function Notification() {
           {notifications.map((notification) => {
             return (
               <Link
+                onClick={(e) => {
+                  dispatch(setNotificationAsReadedAsync(notification.id));
+                }}
                 to={`/material/details/${notification.payload.requestedMaterialId}`}
                 className="notification-item"
               >

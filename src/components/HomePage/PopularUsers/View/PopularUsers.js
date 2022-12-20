@@ -21,7 +21,6 @@ export default function PopularUsers() {
     <div className="home-page-popular-users">
       <div className="home-page-popular-users-header">
         <h2>Popüler Kullanıcılar</h2>
-        <Link to="/">Liderlik Tablosu</Link>
       </div>
       {isLoading ? (
         <div>Yükleniyor...</div>

@@ -7,20 +7,26 @@ export const listenUserNotifications = (userID, callback) => {
   const q = query(notificationsRef, where("userId", "==", userID));
   onSnapshot(q, (querySnapshot) => {
     var notifications = [];
+    var isUpdate = false;
+    var isDelete = false;
+    var isAdd = false;
 
     querySnapshot.docChanges().forEach((change) => {
       if (change.type === "added") {
         console.log("New notification: ");
         notifications.push(change.doc.data());
+        isAdd = true;
       }
       if (change.type === "modified") {
         console.log("Modified notification: ");
+        isUpdate = true;
       }
       if (change.type === "removed") {
         console.log("Removed notification: ");
+        isDelete = true;
       }
     });
-    callback(notifications, initState);
+    callback(notifications, initState, isUpdate, isDelete, isAdd);
     initState = false;
   });
 };

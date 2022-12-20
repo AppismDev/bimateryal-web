@@ -21,10 +21,10 @@ export default function Menu() {
             <div className="icon-text">Ana Sayfa</div>
           </Link>
 
-          <Link to="/messages" className="icon-container">
+          {/* <Link to="/messages" className="icon-container">
             <BiMessage size={24} />
             <div className="icon-text">Mesajlarım</div>
-          </Link>
+          </Link> */}
 
           <Link to="/categories" className="icon-container">
             <BiCategory size={24} />
@@ -45,9 +45,9 @@ export default function Menu() {
               {/* <FiBell size={24} /> */}
               <Notification />
             </Link>
-            <Link to="/">
+            {/* <Link to="/">
               <FiSettings size={24} />
-            </Link>
+            </Link> */}
           </div>
           <button
             className="menu-add-button"

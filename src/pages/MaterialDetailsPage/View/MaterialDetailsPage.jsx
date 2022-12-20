@@ -19,6 +19,7 @@ import { ClickAwayListener } from "@mui/material";
 import { useState } from "react";
 import RequestorDetails from "../../../components/Material/RequestorCard/View/RequestorDetails";
 import { getMaterialById } from "../materialDetailsAPI";
+import { getUserInfo } from "../../../components/Material/UserInfoCard/userInfoAPI";
 
 export default function MaterialDetails(props) {
   const dispatch = useDispatch();
@@ -172,33 +173,38 @@ export default function MaterialDetails(props) {
                 </div>
                 <p className="product-info-p">{materialData.name}</p>
 
-                <div class="pd-icons">
-                  <div className="pd-icon-column">
-                    <BsBoxArrowUp size="1.5em" />
-                    <div>Paylaş</div>
-                  </div>
+                {materialData.status == "completed" ? (
+                  <div>Bu materyal için talep isteği oluşturulamaz.</div>
+                ) : (
+                  <div class="pd-icons">
+                    <div className="pd-icon-column">
+                      <BsBoxArrowUp size="1.5em" />
+                      <div>Paylaş</div>
+                    </div>
 
-                  <div className="pd-icon-column">
-                    <VscReport size="1.5em" />
-                    <div>Şikayet Et</div>
-                  </div>
+                    <div className="pd-icon-column">
+                      <VscReport size="1.5em" />
+                      <div>Şikayet Et</div>
+                    </div>
 
-                  <div className="pd-icon-column">
-                    <BsChatDots size="1.5em" />
-                    <div>Mesaj At</div>
-                  </div>
+                    <div className="pd-icon-column">
+                      <BsChatDots size="1.5em" />
+                      <div>Mesaj At</div>
+                    </div>
 
-                  <div
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(openDialog());
-                    }}
-                    className="pd-icon-column"
-                  >
-                    <MdOutlineAddBox size="1.5em" />
-                    <div>Talep Et</div>
+                    <div
+                      onClick={async (e) => {
+                        e.preventDefault();
+
+                        dispatch(openDialog());
+                      }}
+                      className="pd-icon-column"
+                    >
+                      <MdOutlineAddBox size="1.5em" />
+                      <div>{`Talep Et (${materialData.price} puan)`}</div>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
             <div class="other-details">
@@ -275,12 +281,21 @@ export default function MaterialDetails(props) {
           />
           <button
             disabled={loading}
-            onClick={() => {
+            onClick={async () => {
+              var userInfo = await getUserInfo(userState.uid);
+              if (userInfo.points < materialData.price) {
+                toast.error(
+                  "Yeterli puanınız yok. Mevcut puanınız: " +
+                    userInfo.points +
+                    ""
+                );
+                return;
+              }
               dispatch(
                 addMaterialRequestAsync({
                   materialId: materialData.id,
                   ownerId: materialData.ownerUserId,
-                  requestorId: materialData.uid,
+                  requestorId: userState.uid,
                   price: materialData.price,
                   addressId: null,
                   materialName: materialData.name,

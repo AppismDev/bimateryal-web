@@ -21,14 +21,14 @@ export default function TabContainer() {
         >
           <BiHome /> Aktif İlanlar
         </div>
-        <div
+        {/* <div
           className={activeTab === 1 ? "tabs-tab active" : "tabs-tab"}
           onClick={() => {
             setActiveTab(1);
           }}
         >
-          <BiHome /> İlanlar
-        </div>
+          <BiHome /> Kişi Detayları
+        </div> */}
 
         <span class="tab-indicator"></span>
       </div>

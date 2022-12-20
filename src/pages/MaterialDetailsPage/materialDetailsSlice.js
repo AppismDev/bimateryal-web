@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { getMaterialRequests, requestMaterial } from "./materialDetailsAPI";
+import {
+  approveMaterialRequest,
+  getMaterialRequests,
+  rejectMaterialRequest,
+  requestMaterial,
+} from "./materialDetailsAPI";
 
 const initialState = {
   isMaterialRequestsLoading: false,
@@ -42,6 +47,53 @@ export const addMaterialRequestAsync = createAsyncThunk(
   }
 );
 
+export const approveMaterialRequestAsync = createAsyncThunk(
+  "materialDetails/approveMaterialRequestAsync",
+  async ({
+    materialId,
+    ownerId,
+    requestorId,
+    materialName,
+    requestId,
+    materialPrice,
+  }) => {
+    // wait for 5 seconds to simulate a slow network
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
+    const response = await approveMaterialRequest({
+      requestId,
+      materialId,
+      ownerId,
+      requestorId,
+      materialName,
+      materialPrice,
+    });
+    return requestId;
+  }
+);
+export const rejectMaterialRequestAsync = createAsyncThunk(
+  "materialDetails/rejectMaterialRequestAsync",
+  async ({
+    materialId,
+    ownerId,
+    requestorId,
+    materialName,
+    requestId,
+    materialPrice,
+  }) => {
+    // wait for 5 seconds to simulate a slow network
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
+    const response = await rejectMaterialRequest({
+      requestId,
+      materialId,
+      ownerId,
+      requestorId,
+      materialName,
+      materialPrice,
+    });
+    return requestId;
+  }
+);
+
 const materialDetailsSlice = createSlice({
   name: "materialDetails",
   initialState,
@@ -78,6 +130,33 @@ const materialDetailsSlice = createSlice({
       state.isMaterialRequestsLoading = false;
       state.error = action.error.message;
       console.log(action.error.message);
+    },
+
+    [rejectMaterialRequestAsync.fulfilled]: (state, action) => {
+      state.loading = false;
+      // remove the rejected request from the list
+      state.materialRequests = state.materialRequests.filter(
+        (request) => request.id !== action.payload
+      );
+    },
+
+    [rejectMaterialRequestAsync.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+      console.log(action.error.message);
+    },
+
+    [approveMaterialRequestAsync.fulfilled]: (state, action) => {
+      state.loading = false;
+      // remove the rejected requests from the list and add update the approved request
+      state.materialRequests = state.materialRequests.filter(
+        (request) => request.id === action.payload
+      );
+
+      const requestIndex = state.materialRequests.findIndex(
+        (request) => request.id === action.payload
+      );
+      state.materialRequests[requestIndex].status = "approved";
     },
   },
 });

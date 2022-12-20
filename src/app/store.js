@@ -11,6 +11,8 @@ import profileSlice from "../pages/ProfilePage/profileSlice";
 import searchbarSlice from "../components/SearchBar/searchbarSlice";
 import materialDetailsSlice from "../pages/MaterialDetailsPage/materialDetailsSlice";
 import notificationsSlice from "../pages/NotificationsPage/notificationsSlice";
+import dialogContainerSlice from "../components/DialogContainer/dialogContainerSlice";
+import newMaterialsSlice from "../pages/NewMaterials/newMaterialsSlice";
 
 export const store = configureStore({
   // middleware: (getDefaultMiddleware) =>
@@ -37,5 +39,7 @@ export const store = configureStore({
     searchbar: searchbarSlice,
     materialDetails: materialDetailsSlice,
     notifications: notificationsSlice,
+    dialogContainer: dialogContainerSlice,
+    allNewMaterials: newMaterialsSlice,
   },
 });

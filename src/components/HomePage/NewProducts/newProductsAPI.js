@@ -7,7 +7,9 @@ export async function getNewMaterials() {
     orderBy("createdAt", "desc"),
     limit(9)
   );
+
   const querySnapshot = await getDocs(q);
+  console.log("snapshot is : ", querySnapshot);
   const data = querySnapshot.docs.map((doc) => doc.data());
   return data;
 }

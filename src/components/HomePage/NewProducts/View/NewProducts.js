@@ -20,7 +20,7 @@ export default function NewProducts() {
     <div className="home-page-new-products">
       <div className="home-page-new-products-header">
         <h2>Yeni Ürünler</h2>
-        <Link to="/">Tümünü Gör</Link>
+        <Link to="/newMaterials">Tümünü Gör</Link>
       </div>
       {isLoading ? (
         <div className="home-page-new-products-loading">Yükleniyor...</div>

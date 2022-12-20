@@ -1,0 +1,13 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    align-items: flex-start;
+    left: auto;
+    z-index: 100;
+    /* align to center of screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

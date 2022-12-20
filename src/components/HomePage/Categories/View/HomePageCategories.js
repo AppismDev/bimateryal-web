@@ -27,7 +27,7 @@ export default function HomePageCategories() {
     <div className="home-page-category">
       <div className="home-page-category-header">
         <h2>Popüler Kategoriler</h2>
-        <Link to="/">Tümünü Gör</Link>
+        <Link to="/categories">Tümünü Gör</Link>
       </div>
       {loadingState && <h3>Kategoriler yükleniyor...</h3>}
       {!loadingState && topFiveCategories.length === 0 && (
