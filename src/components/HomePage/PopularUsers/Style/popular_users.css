@@ -1,4 +1,4 @@
-.home-page-popular-users{
+.home-page-popular-users {
     margin-bottom: 24px;
     margin-top: 24px;
     display: flex;
@@ -18,7 +18,7 @@
 
 .home-page-popular-users-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 24px;
     padding-top: 24px;
     padding-bottom: 24px;
@@ -27,19 +27,16 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width: 1200px) {
-    .home-page-popular-users-content {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-}
 
-@media screen and (max-width: 1000px) {
+
+@media screen and (max-width: 1350px) {
     .home-page-popular-users-content {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 1100px) {
     .home-page-popular-users-content {
         grid-template-columns: 1fr 1fr;
     }
@@ -61,8 +58,9 @@
     padding: 6px;
     transition: all 0.2s ease-in-out;
 }
+
 .home-page-popular-users-item:hover {
-    
+
     cursor: pointer;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 12px;
@@ -96,5 +94,5 @@
     font-weight: 400;
     color: rgb(136, 136, 136);
     text-align: start;
-    
+
 }

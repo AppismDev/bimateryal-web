@@ -10,10 +10,14 @@ export default function MaterialCard(props) {
       }}
       className="home-page-new-products-item"
     >
-      <img src={props.material.coverImageUrl} alt={props.material.name} />
-      <div className="home-page-new-products-item-content ">
-        <h3>{props.material.name}</h3>
-        <p>{props.material.description}</p>
+      <img
+        className=""
+        src={props.material.coverImageUrl}
+        alt={props.material.name}
+      />
+      <div className="home-page-new-products-item-content">
+        <h3 className="home-page-new-products-item-content-title">{props.material.name}</h3>
+        <p className="home-page-new-products-item-content-subtitle">{props.material.description}</p>
       </div>
     </Link>
   );

@@ -27,7 +27,23 @@ export default function NewProducts() {
       ) : (
         <div className="home-page-new-products-content">
           {products &&
-            products.map((product) => <MaterialCard material={product} />)}
+            products.map((product) => (
+              <MaterialCard material={product} />
+              // <Link
+              //   to="/product/details"
+              //   className="home-page-new-products-item"
+              // >
+              //   <img
+              //     className=""
+              //     src={product.coverImageUrl}
+              //     alt={product.name}
+              //   />
+              //   <div className="home-page-new-products-item-content">
+              //     <h3 className="home-page-new-products-item-content-title">{product.name}</h3>
+              //     <p className="home-page-new-products-item-content-subtitle">{product.description}</p>
+              //   </div>
+              // </Link>
+            ))}
         </div>
       )}
     </div>
