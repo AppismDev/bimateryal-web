@@ -1,0 +1,65 @@
+.chat-user-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.chat-user-card-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: red;
+    margin: 10px;
+}
+
+.chat-user-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+    height: 100%;
+}
+
+.chat-user-card-name {
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.chat-user-card-last-message {
+    margin-top: 2px;
+    font-size: small;
+}
+
+.chat-user-trailing {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end !important;
+    align-self: flex-end !important;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.chat-user-card-time {
+    font-size: small;
+}
+
+.chat-user-card-message-count-badge {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    margin-top: 2px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: small;
+}

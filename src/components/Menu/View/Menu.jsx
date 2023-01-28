@@ -21,10 +21,10 @@ export default function Menu() {
             <div className="icon-text">Ana Sayfa</div>
           </Link>
 
-          {/* <Link to="/messages" className="icon-container">
+          <Link to="/messages" className="icon-container">
             <BiMessage size={24} />
             <div className="icon-text">Mesajlarım</div>
-          </Link> */}
+          </Link>
 
           <Link to="/categories" className="icon-container">
             <BiCategory size={24} />

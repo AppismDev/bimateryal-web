@@ -6,3 +6,4 @@ export * from "./AddMaterial/Style/add_material.css";
 export * from "./CategoryMaterialsPage/Style/category_materials.css";
 export * from "./MaterialDetailsPage/Style/material_details.css";
 export * from "./ProfilePage/Style/profile_page.css";
+

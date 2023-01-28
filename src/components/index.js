@@ -15,3 +15,5 @@ export * from "./Dialog/Style/dialog.css";
 export * from "./DialogContainer/Style/dialog_container.css";
 //export * from "./Menu/View/Menu.jsx";
 //src\components\Menu\View\Menu.jsx
+
+export * from "./ChatItem/Style/chat_item_style.css";
