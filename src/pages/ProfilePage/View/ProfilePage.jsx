@@ -77,7 +77,7 @@ export default function ProfilePage(props) {
             <div id="profile-page-right-rankings">
               <div id="profile-page-right-rankings-title">Puan</div>
               <div id="profile-page-right-rankings-body">
-                <div>Bugüne kadar {user.earnedPoints} puan kazanıldı. </div>
+                <div>Bugüne kadar {user.earnedPoints} puan kazanıldı.</div>
               </div>
             </div>
             <TabContainer />
