@@ -35,7 +35,7 @@ export default function Notification() {
                 onClick={(e) => {
                   dispatch(setNotificationAsReadedAsync(notification.id));
                 }}
-                to={`/material/details/${notification.payload.requestedMaterialId}`}
+                to={notification.type == "request" ? `/material/details/${notification.payload.requestedMaterialId}` : notification.type == "message" ? "/messages" : ""}
                 className="notification-item"
               >
                 <div className="notification-item__content">

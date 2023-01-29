@@ -13,6 +13,7 @@ import materialDetailsSlice from "../pages/MaterialDetailsPage/materialDetailsSl
 import notificationsSlice from "../pages/NotificationsPage/notificationsSlice";
 import dialogContainerSlice from "../components/DialogContainer/dialogContainerSlice";
 import newMaterialsSlice from "../pages/NewMaterials/newMaterialsSlice";
+import messagesSlice from "../pages/MessagesPage/messagesSlice";
 
 export const store = configureStore({
   // middleware: (getDefaultMiddleware) =>
@@ -41,5 +42,6 @@ export const store = configureStore({
     notifications: notificationsSlice,
     dialogContainer: dialogContainerSlice,
     allNewMaterials: newMaterialsSlice,
+    messages: messagesSlice,
   },
 });

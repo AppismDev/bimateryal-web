@@ -20,10 +20,12 @@ import { useState } from "react";
 import RequestorDetails from "../../../components/Material/RequestorCard/View/RequestorDetails";
 import { getMaterialById } from "../materialDetailsAPI";
 import { getUserInfo } from "../../../components/Material/UserInfoCard/userInfoAPI";
+import { Link, useHistory } from "react-router-dom";
 
 export default function MaterialDetails(props) {
   const dispatch = useDispatch();
   const [requestText, setRequestText] = useState("");
+  const history = useHistory();
   // const isDialogOpen = useSelector(isDialogOpenSelector);
   const { isDialogOpen, loading } = useSelector(
     (state) => state.materialDetails
@@ -34,7 +36,7 @@ export default function MaterialDetails(props) {
   var { material } = props.location.state || {};
 
   const [materialData, setMaterialData] = useState(material);
-
+  const [ownerInfo, setOwnerInfo] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const materialRequests = useSelector(materialRequestsSelector);
   const isMaterialRequestsLoading = useSelector(
@@ -42,18 +44,34 @@ export default function MaterialDetails(props) {
   );
 
   useEffect(() => {
-    console.log("MaterialDetailsPage useEffect");
     if (materialData === undefined) {
       setIsLoading(true);
-      getMaterialById(props.match.params.id).then((materialData) => {
-        setIsLoading(false);
-        material = materialData;
-        setMaterialData(materialData);
+      getMaterialById(props.match.params.id).then((mdata) => {
+        // setIsLoading(false);
+        material = mdata;
+        setMaterialData(mdata);
+
+        getUserInfo(mdata.ownerUserId).then((ownerData) => {
+          console.log("isloading false");
+          setIsLoading(false);
+          console.log("ownerData", ownerData);
+          setOwnerInfo(ownerData);
+        });
       });
     } else {
+      setIsLoading(true);
       if (userState.uid === materialData.ownerUserId) {
         setIsOwner(true);
+        setIsLoading(false);
         dispatch(getMaterialRequestsAsync(materialData.id));
+        setOwnerInfo(userState);
+      } else {
+        getUserInfo(materialData.ownerUserId).then((ownerData) => {
+          console.log("isloading false");
+          setIsLoading(false);
+          console.log("ownerData", ownerData);
+          setOwnerInfo(ownerData);
+        });
       }
     }
 
@@ -187,7 +205,12 @@ export default function MaterialDetails(props) {
                       <div>Şikayet Et</div>
                     </div>
 
-                    <div className="pd-icon-column">
+                    <div className="pd-icon-column" onClick={() => {
+                      history.push({
+                        pathname: "/messages",
+                        state: { user: ownerInfo }
+                      })
+                    }}>
                       <BsChatDots size="1.5em" />
                       <div>Mesaj At</div>
                     </div>
@@ -286,8 +309,8 @@ export default function MaterialDetails(props) {
               if (userInfo.points < materialData.price) {
                 toast.error(
                   "Yeterli puanınız yok. Mevcut puanınız: " +
-                    userInfo.points +
-                    ""
+                  userInfo.points +
+                  ""
                 );
                 return;
               }

@@ -8,6 +8,7 @@ import profileSlice, {
   selectIsLoading,
   selectUser,
 } from "../profileSlice";
+import { logout } from "../../SignInPage/signInSlice";
 export default function ProfilePage(props) {
   const loading = useSelector(selectIsLoading);
   const user = useSelector(selectUser);
@@ -37,7 +38,7 @@ export default function ProfilePage(props) {
               alt="profile"
             />
 
-            <div className="profile-page-left-info">
+            {/* <div className="profile-page-left-info">
               <div className="profile-page-left-info-header">
                 <h4>Adresler</h4>
                 <div className="profile-page-left-info-header-divider" />
@@ -59,7 +60,7 @@ export default function ProfilePage(props) {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="profile-page-right">
             <div className="profile-page-right-header">
@@ -81,6 +82,11 @@ export default function ProfilePage(props) {
               </div>
             </div>
             <TabContainer />
+
+            <button className="logout-button" onClick={(e) => {
+              e.preventDefault()
+              dispatch(logout())
+            }}>ÇIKIŞ YAP</button>
           </div>
         </div>
       ) : (

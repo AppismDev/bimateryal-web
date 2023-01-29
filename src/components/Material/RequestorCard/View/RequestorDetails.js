@@ -23,7 +23,7 @@ export default function RequestorDetails(props) {
     const getuser = async () => {
       setIsUserLoading(true);
       const user = await getUserInfo(request.requestorId);
-      console.log("USER IS HERE: ", user);
+
       setRequestorUser(user);
       setIsUserLoading(false);
     };
@@ -100,7 +100,7 @@ export default function RequestorDetails(props) {
         <button onClick={() => {
           // go to chat page
           // link to chat page
-          history.push(`/messages`, { user: requestorUser })
+          history.push({ pathname: `/messages`, state: { user: requestorUser } })
 
 
         }}>İletişime geç</button>

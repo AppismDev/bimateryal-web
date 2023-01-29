@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, runTransaction, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, onSnapshot, query, runTransaction, setDoc, updateDoc, where } from "firebase/firestore";
 import { firestore } from "../../services/firebase/FirebaseConfig";
 
 
@@ -18,7 +18,10 @@ export async function sendMessage(message) {
                 content: message.content,
                 timestamp: message.timestamp,
                 isRead: false,
+
                 id: inboxDoc.id,
+                senderName: message.senderName,
+                senderPhotoUrl: message.senderPhotoUrl,
             };
 
 
@@ -30,6 +33,8 @@ export async function sendMessage(message) {
                     lastMessageTimestamp: message.timestamp,
                     lastMessageSenderId: message.senderId,
                     lastMessageId: inboxDoc.id,
+                    senderName: message.senderName,
+                    senderPhotoUrl: message.senderPhotoUrl,
                 });
             }
             else {
@@ -38,11 +43,30 @@ export async function sendMessage(message) {
                     lastMessageTimestamp: message.timestamp,
                     lastMessageSenderId: message.senderId,
                     lastMessageId: inboxDoc.id,
+                    senderName: message.senderName,
+                    senderPhotoUrl: message.senderPhotoUrl,
                 });
 
             }
 
             transaction.set(inboxDoc, messageData);
+
+            const notificationRef = doc(collection(firestore, "Notifications"));
+            const notification = {
+                userId: message.receiverId,
+                senderId: message.senderId,
+                title: "Yeni Mesaj",
+                description: `Yeni bir mesajınız var.`,
+                type: "message",
+                createdAt: new Date(),
+                isRead: false,
+                id: notificationRef.id,
+                payload: {
+                    messageContent: message.content,
+                    senderId: message.senderId,
+                },
+            };
+            transaction.set(notificationRef, notification);
 
         })
         return true;
@@ -51,3 +75,52 @@ export async function sendMessage(message) {
         return false;
     }
 }
+
+
+export async function getInbox(id) {
+    const inboxRef = collection(firestore, "Messages", id, "Inbox");
+    const inboxSnapshot = await getDocs(inboxRef);
+    const inbox = inboxSnapshot.docs.map((doc) => doc.data());
+    console.log("Inbox is fetched ", inboxSnapshot.docs.map((doc) => doc.data()));
+    return inbox;
+}
+export const listenUserInbox = (userID, callback) => {
+    const messagesRef = collection(firestore, "Messages", userID, "Inbox");
+    onSnapshot(messagesRef, (querySnapshot) => {
+        querySnapshot.docChanges().forEach((change) => {
+
+            if (change.type === "added") {
+                callback(change.doc.data());
+            }
+            if (change.type === "modified") {
+                callback(change.doc.data());
+            }
+            if (change.type === "removed") {
+                callback(change.doc.data());
+            }
+        });
+
+    });
+};
+
+
+// belirli bir görüşmeyi dinleyen stream
+export const listenUserMessage = (userID, senderID, callback) => {
+    const messagesRef = collection(firestore, "Messages", userID, "Inbox", senderID, "Messages");
+    onSnapshot(messagesRef, (querySnapshot) => {
+        querySnapshot.docChanges().forEach((change) => {
+            console.log("inbox change", change.doc.data());
+            if (change.type === "added") {
+                callback(change.doc.data());
+            }
+            if (change.type === "modified") {
+                callback(change.doc.data());
+            }
+            if (change.type === "removed") {
+                callback(change.doc.data());
+            }
+        });
+
+    });
+};
+

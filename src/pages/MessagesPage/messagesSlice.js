@@ -1,9 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { sendMessage } from "./messagesAPI"
+import { collection, onSnapshot, query } from "firebase/firestore"
+import { getInbox, listenUserInbox, sendMessage } from "./messagesAPI"
 
 const initialState = {
     messages: [],
     loading: false,
+    inbox: [],
+    selectedUser: null,
+    // TEXT FIELD
+    messageText: "",
+    selectedInbox: null
 }
 
 // export const fetchMessagesAsync = createAsyncThunk(
@@ -13,6 +19,13 @@ const initialState = {
 //         return response
 //     }
 // )
+export const fetchInboxAsync = createAsyncThunk(
+    'messages/fetchInboxAsync',
+    async (userId) => {
+        const response = await getInbox(userId)
+        return response
+    }
+)
 
 export const sendMessageAsync = createAsyncThunk(
     'messages/sendMessageAsync',
@@ -26,6 +39,7 @@ export const sendMessageAsync = createAsyncThunk(
 
 
 
+
 export const messagesSlice = createSlice({
     name: 'messages',
     initialState,
@@ -33,19 +47,61 @@ export const messagesSlice = createSlice({
         addMessage: (state, action) => {
             state.messages.push(action.payload)
         },
+        setSelectedUser: (state, action) => {
+            state.selectedUser = action.payload
+        },
 
         setMessages: (state, action) => {
             state.messages = action.payload
-        }
+        },
+        setMessageText: (state, action) => {
+            state.messageText = action.payload
+        },
+        setSelectedInbox: (state, action) => {
+            state.selectedInbox = action.payload
+        },
+        addInbox: (state, action) => {
+            state.inbox.forEach((inbox) => {
+                if (inbox.lastMessageSenderId === action.payload.lastMessageSenderId) {
+
+                    // remove the inbox from the array
+                    state.inbox = state.inbox.filter((inbox) => inbox.lastMessageSenderId !== action.payload.lastMessageSenderId)
+                }
+            })
+
+            state.inbox.push(action.payload)
+        },
+        // listenUserInboxAction: (state, action) => {
+        //     listenUserInbox(action.payload, (inbox) => {
+        //         console.log("inbox is changed", inbox)
+        //         state.inbox.push(inbox)
+        //     })
+        // }
+
     },
     extraReducers: {
         [sendMessageAsync.pending]: (state, action) => {
-            state.loading = true
+
         },
 
         [sendMessageAsync.fulfilled]: (state, action) => {
+
+            // state.messages.push(action.payload)
+        },
+        [sendMessageAsync.rejected]: (state, action) => {
+
+        },
+        [fetchInboxAsync.pending]: (state, action) => {
+            state.loading = true
+        }
+        ,
+        [fetchInboxAsync.fulfilled]: (state, action) => {
             state.loading = false
-            state.messages.push(action.payload)
+            state.inbox = action.payload
+        }
+        ,
+        [fetchInboxAsync.rejected]: (state, action) => {
+            state.loading = false
         }
 
 
@@ -53,9 +109,15 @@ export const messagesSlice = createSlice({
 
 })
 
-export const { addMessage } = messagesSlice.actions
+export const { addMessage, setSelectedUser, setMessageText, setSelectedInbox, addInbox } = messagesSlice.actions
 
 
 export const selectMessages = (state) => state.messages.messages
+export const selectSelectedInbox = (state) => state.messages.selectedInbox
+export const selectLoading = (state) => state.messages.loading
+export const selectInbox = (state) => state.messages.inbox
+export const selectSelectedUser = (state) => state.messages.selectedUser
+export const selectMessageText = (state) => state.messages.messageText
+
 
 export default messagesSlice.reducer

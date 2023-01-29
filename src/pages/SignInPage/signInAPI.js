@@ -25,7 +25,7 @@ export default async function signInWithGoogle() {
   const usertobeRegistered = {
     displayName: user.displayName,
     email: user.email,
-    photoURL: user.photoURL,
+    photoUrl: user.photoURL,
     accountProvider: "Google",
     fcmToken: null,
     activeAddressId: null,
@@ -51,7 +51,7 @@ export default async function signInWithGoogle() {
 async function saveUserToFirestore({
   displayName,
   email,
-  photoURL,
+  photoUrl,
   accountProvider,
   fcmToken,
   uid,
@@ -70,7 +70,7 @@ async function saveUserToFirestore({
       email,
       fcmToken: fcmToken || null,
       activeAddressId: activeAddressId || null,
-      photoUrl: photoURL || null,
+      photoUrl: photoUrl || null,
       uid: uid,
       earnedPoints,
       createdAt,
