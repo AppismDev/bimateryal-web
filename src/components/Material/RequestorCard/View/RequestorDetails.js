@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { rejectMaterialRequest } from "../../../../pages/MaterialDetailsPage/materialDetailsAPI";
 import {
@@ -12,6 +13,7 @@ import {
 } from "../../../DialogContainer/dialogContainerSlice";
 import { getUserInfo } from "../../UserInfoCard/userInfoAPI";
 export default function RequestorDetails(props) {
+  const history = useHistory();
   const { request } = props;
 
   const [requestorUser, setRequestorUser] = React.useState(null);
@@ -95,7 +97,13 @@ export default function RequestorDetails(props) {
             Onayla
           </button>
         )}
-        <button>İletişime geç</button>
+        <button onClick={() => {
+          // go to chat page
+          // link to chat page
+          history.push(`/messages`, { user: requestorUser })
+
+
+        }}>İletişime geç</button>
         {request.status != "approved" && (
           <button
             onClick={(e) => {
