@@ -59,6 +59,9 @@ export default function ProfilePage(props) {
                     </div>
                   </div>
                 ))}
+                <button className="profile-page-address-add-button">
+                  Ekle
+                </button>
               </div>
             </div> */}
           </div>
