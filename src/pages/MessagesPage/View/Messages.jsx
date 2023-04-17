@@ -38,6 +38,7 @@ export default function Messages(props) {
 
   const [emptyInbox, setEmptyInbox] = useState(undefined);
   useEffect(() => {
+    console.log("CHANGEDDDDDDDDDDDD");
     listenUserInbox(user.uid, (inbox) => {
       console.log("inbox is changed", inbox);
       dispatch(addInbox(inbox));
@@ -61,7 +62,7 @@ export default function Messages(props) {
     }
 
     // listenUserInbox(user.uid)
-  }, []);
+  }, [selectedInbox]);
 
   useEffect(() => {
     // if (selectedInbox && selectedInbox.lastMessageSenderId) {

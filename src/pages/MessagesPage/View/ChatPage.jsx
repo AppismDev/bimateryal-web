@@ -35,7 +35,6 @@ export default function ChatPage() {
 
   useEffect(() => {
     if (!selectedUser) {
-      console.log("buragirdik22");
       console.log(`inbox id is ${selectedInbox.uid}`);
       getUserInfo(selectedInbox.uid).then((fetchedUser) => {
         console.log("user is ", user);
@@ -52,7 +51,7 @@ export default function ChatPage() {
         setMessages(data);
       });
     }
-  }, []);
+  }, [selectedUser]);
 
   return (
     <div className="selected-chat">
