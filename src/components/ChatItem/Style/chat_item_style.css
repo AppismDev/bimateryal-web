@@ -1,0 +1,75 @@
+.chat-user-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    padding: 4px;
+    border-radius: 8px;
+
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.2s all ease-in-out;
+}
+
+.chat-user-card:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.chat-user-card-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: red;
+    margin: 10px;
+}
+
+.chat-user-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+    height: 100%;
+}
+
+.chat-user-card-name {
+    font-size: large;
+    font-weight: 500;
+
+}
+
+.chat-user-card-last-message {
+    margin-top: 2px;
+    font-size: small;
+    font-weight: 300;
+}
+
+.chat-user-trailing {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end !important;
+    align-self: flex-end !important;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.chat-user-card-time {
+    font-size: small;
+    font-weight: 300;
+    color: gray;
+}
+
+.chat-user-card-message-count-badge {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    margin-bottom: 2px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: small;
+}

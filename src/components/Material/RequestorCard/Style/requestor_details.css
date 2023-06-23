@@ -1,0 +1,70 @@
+.requestor-details-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 12px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 50%;
+
+}
+
+.requestor-name-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+}
+.requestor-name-row > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.requestor-details-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+.requestor-button-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+    justify-content: space-between;
+
+}
+
+.requestor-button-row > button {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background-color: #21c7b1;
+
+}
+.requestor-button-row > button.cancel {
+    background-color: rgb(236, 37, 37);
+}
+.requestor-button-row > button.cancel:hover {
+    background-color: red;
+}
+
+
+.requestor-button-row > button:hover {
+    background-color: #1daa9b;
+}
+
+.requestor-button-row > button:active {
+    transform: scale(0.95);
+}

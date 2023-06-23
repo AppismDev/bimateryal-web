@@ -1,0 +1,73 @@
+
+/* Float four dialog-columns side by side */
+.dialog-column {
+    max-width: 600px;
+    min-width: 400px;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in dialog-columns */
+
+
+/* Style the counter dialog-cards */
+.dialog-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* this adds the "dialog-dialog-card" effect */
+  padding: 16px;
+  padding-left: 35px;
+  padding-right: 35px;
+  text-align: center;
+  background-color: #F5655C;
+  border-radius: 20px;
+}
+
+.dialog-card h2 {
+  color: white;
+  text-align: left;
+}
+
+
+.dialog-button-row {
+    gap: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.dialog-button, .dialog-button2 {
+  border-radius: 15px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  background-color: #F5413A;
+  color: white;
+  height: 31px;
+  margin-top: 20px;
+}
+.dialog-button2 {
+    background-color: white;
+    color: #F5413A;
+}
+.dialog-button:hover {
+  background-color: #ff9591;
+}
+
+
+.dialog-button2:hover {
+  background-color: #ff9591;
+  color: white;
+}
+ .dialog-button2:active,  .dialog-button:active {
+  transform: scale(0.95);
+}
+
+
+/* Responsive dialog-columns - one dialog-column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .dialog-column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+  }
+}

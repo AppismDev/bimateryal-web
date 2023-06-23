@@ -1,0 +1,19 @@
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.home-page-container a {
+    text-decoration: none;
+    color: rgb(42, 120, 221);
+
+}
+
+.home-page-container a:visited, .home-page-container a:active, .home-page-container a:focus, .home-page-container a:link{
+    text-decoration: none;
+    color: rgb(42, 120, 221);
+
+
+}

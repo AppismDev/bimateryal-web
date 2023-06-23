@@ -1,15 +1,15 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+const { getAllNewMaterials } = require("./pages/NewMaterials/newMaterialsAPI");
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+const { getUserFromFirestore } = require("./services/firebase/UserService");
+// Initialize Firebase
+test("materials tests", async () => {
+  // const result = render(<App />);
+  const materials = await getAllNewMaterials();
+  console.log(materials);
+  expect(materials).not.toBeNull();
+});
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+test("user tests", async () => {
+  const user = await getUserFromFirestore("MhYFqEMUKjQ7MDol1wyYP4hfgQf1");
+  expect(user).not.toBeNull();
 });
